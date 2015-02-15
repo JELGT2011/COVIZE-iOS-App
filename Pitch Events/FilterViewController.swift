@@ -25,6 +25,8 @@ class FilterViewController: UIViewController, UITableViewDataSource {
         ("Use Recommended Filters")
     ]
     
+    var selectedRow = 0;
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
@@ -39,21 +41,47 @@ class FilterViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        if(indexPath.row != selectedRow) {
+            var oldRow = selectedRow
+            selectedRow = indexPath.row
+            
+            //update oldRow and selected row
+            //self.tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.None)
+            println("new selected row")
+            tableView.reloadData()
+        }
+        
+        
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("filterSetting", forIndexPath: indexPath) as UITableViewCell
         
         if (indexPath.section == 0){
             cell.textLabel?.text = sorting[indexPath.row]
+            cell.accessoryType = (selectedRow == indexPath.row) ? .Checkmark : .None
             
         } else if ( indexPath.section == 1){
             cell.textLabel?.text = filters[indexPath.row]
             
+            var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
+            enabledSwitch.on = false
+            cell.accessoryView = enabledSwitch
+
+            
         } else {
             cell.textLabel?.text = recommended[indexPath.row]
+            
+            var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
+            enabledSwitch.on = false
+            cell.accessoryView = enabledSwitch
         }
         
         return cell
     }
+
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == 0){
@@ -64,6 +92,7 @@ class FilterViewController: UIViewController, UITableViewDataSource {
             return "Default"
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
