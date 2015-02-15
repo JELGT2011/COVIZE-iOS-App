@@ -17,8 +17,8 @@ class FilterViewController: UIViewController, UITableViewDataSource {
     
     let filters = [
         ("Industry Specific"),
-        ("Minority Execuative"),
-        ("Female Execuative")
+        ("Minority Executive"),
+        ("Female Executive")
     ]
     
     let recommended = [
