@@ -2,7 +2,7 @@
 //  EventTableViewController.swift
 //  Pitch Events
 //
-//  Created by Austin Delk on 2/15/15.
+//  Created by Cameron Jones on 2/15/15.
 //  Copyright (c) 2015 Covize. All rights reserved.
 //
 
