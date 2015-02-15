@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		E9D161661A910492005953CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D161651A910492005953CF /* AppDelegate.swift */; };
 		E9D161691A910492005953CF /* Pitch_Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9D161671A910492005953CF /* Pitch_Events.xcdatamodeld */; };
-		E9D1616B1A910492005953CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1616A1A910492005953CF /* ViewController.swift */; };
 		E9D1616E1A910492005953CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D1616C1A910492005953CF /* Main.storyboard */; };
 		E9D161701A910492005953CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D1616F1A910492005953CF /* Images.xcassets */; };
 		E9D161731A910492005953CF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D161711A910492005953CF /* LaunchScreen.xib */; };
 		E9D1617F1A910492005953CF /* Pitch_EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */; };
+		E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618C1A910EA2005953CF /* EventTableViewController.swift */; };
+		E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618E1A910EEE005953CF /* FilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +32,14 @@
 		E9D161641A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D161651A910492005953CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9D161681A910492005953CF /* Pitch_Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pitch_Events.xcdatamodel; sourceTree = "<group>"; };
-		E9D1616A1A910492005953CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E9D1616D1A910492005953CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9D1616F1A910492005953CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9D161721A910492005953CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E9D161781A910492005953CF /* Pitch EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch EventsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D1617D1A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_EventsTests.swift; sourceTree = "<group>"; };
+		E9D1618C1A910EA2005953CF /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		E9D1618E1A910EEE005953CF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				E9D161651A910492005953CF /* AppDelegate.swift */,
-				E9D1616A1A910492005953CF /* ViewController.swift */,
+				E9D1618C1A910EA2005953CF /* EventTableViewController.swift */,
+				E9D1618E1A910EEE005953CF /* FilterViewController.swift */,
 				E9D1616C1A910492005953CF /* Main.storyboard */,
 				E9D1616F1A910492005953CF /* Images.xcassets */,
 				E9D161711A910492005953CF /* LaunchScreen.xib */,
@@ -215,8 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9D1616B1A910492005953CF /* ViewController.swift in Sources */,
 				E9D161661A910492005953CF /* AppDelegate.swift in Sources */,
+				E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */,
+				E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */,
 				E9D161691A910492005953CF /* Pitch_Events.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +415,7 @@
 				E9D161841A910492005953CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch EventsTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				E9D161871A910492005953CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
