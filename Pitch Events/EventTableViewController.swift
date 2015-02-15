@@ -8,11 +8,12 @@
 
 import UIKit
 
-class EventTableViewController: UIViewController, UITableViewDataSource {
+class EventTableViewController: UIViewController, UITableViewDataSource, NSURLConnectionDataDelegate {
     
+    var data = NSMutableData()
     //Dumby events
     
-    let dumbyEvents = [
+    let dummyEvents = [
         ("SXSW", "2/18/2015"),
         ("Pitch 'n Hit Event", "2/29/2015"),
         ("Naturally Boulder", "4/15/2015"),
@@ -29,14 +30,14 @@ class EventTableViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dumbyEvents.count
+        return dummyEvents.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("event", forIndexPath: indexPath) as UITableViewCell
         
-        let (eventTitle, eventDate) = dumbyEvents[indexPath.row]
+        let (eventTitle, eventDate) = dummyEvents[indexPath.row]
         
         cell.textLabel?.text = eventTitle
         cell.detailTextLabel?.text = eventDate
@@ -48,10 +49,11 @@ class EventTableViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidLoad() { //attempt to pull JSON if view loads (code based on JSON/swift tutorial found here: http://www.raywenderlich.com/82706/working-with-json-in-swift-tutorial )
         
-        // Do any additional setup after loading the view.
+        super.viewDidLoad()
+        //startConnection() //starts json connection
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +61,31 @@ class EventTableViewController: UIViewController, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    /* //meant to get JSON data from our URL, doesn't currently work
+    func startConnection(){
+        let urlPath: String = "https://website-covize-pitch-alerts-jelgt2011-1.c9.io/api/pitch_events/"
+        var url: NSURL = NSURL(string: urlPath)!
+        var request: NSURLRequest = NSURLRequest(URL: url)
+        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
+        connection.start()
+    }
+    
+    func connection(connection: NSURLConnection!, didReceiveData data: NSData!){
+        self.data.appendData(data)
+    }
+    
+    func buttonAction(sender: UIButton!){
+        
+    }
+    
+    func connectionDidFinishLoading(connection: NSURLConnection!) {
+        // throwing an error on the line below (can't figure out where the error message is)
+        var err: NSError
+        //var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+        //println(jsonResult)
+  
+    }
+    */
     
     /*
     // MARK: - Navigation
