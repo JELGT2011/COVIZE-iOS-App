@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterViewController: UIViewController, UITableViewDataSource {
+class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let sorting = [
         ("Date: Most Recent"),
@@ -25,7 +25,7 @@ class FilterViewController: UIViewController, UITableViewDataSource {
         ("Use Recommended Filters")
     ]
     
-    var selectedRow = 0;
+    var sortSelectedCell:NSIndexPath = NSIndexPath()
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -43,25 +43,38 @@ class FilterViewController: UIViewController, UITableViewDataSource {
     
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        if(indexPath.row != selectedRow) {
-            var oldRow = selectedRow
-            selectedRow = indexPath.row
+        
+        //If the selected row is in the "Sorted By" section and the selected row isn't the one that is already checked, then we're going to decheck the old cell and check the new one
+        if ((indexPath.section == 0) && (sortSelectedCell.row != indexPath.row)){
+            let oldSelectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(sortSelectedCell)!
+            let newSelectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
             
-            //update oldRow and selected row
-            //self.tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.None)
-            println("new selected row")
-            tableView.reloadData()
+            oldSelectedCell.accessoryType = .None
+            newSelectedCell.accessoryType = .Checkmark
+            
+            //set the selected cell var to the indexPath of the new cell
+            sortSelectedCell = indexPath
         }
-        
-        
+
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("filterSetting", forIndexPath: indexPath) as UITableViewCell
         
         if (indexPath.section == 0){
+            
+            //This sets the first row in the "Sort By" Section to be checked by default
+            if(indexPath.row == 0) {
+                //Set the selected cell to the first cell
+                sortSelectedCell = indexPath
+                //Set its accessory type to the checkmark
+                cell.accessoryType = .Checkmark
+            } else {
+                //For every other sorting option set them to no checkmark
+                cell.accessoryType = .None
+            }
+            
             cell.textLabel?.text = sorting[indexPath.row]
-            cell.accessoryType = (selectedRow == indexPath.row) ? .Checkmark : .None
             
         } else if ( indexPath.section == 1){
             cell.textLabel?.text = filters[indexPath.row]
@@ -98,6 +111,7 @@ class FilterViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
     }
     
     override func didReceiveMemoryWarning() {
