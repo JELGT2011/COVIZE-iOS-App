@@ -11,40 +11,58 @@ import UIKit
 class EventTableViewController: UIViewController, UITableViewDataSource, NSURLConnectionDataDelegate {
     
     var data = NSMutableData()
-    //Dumby events
+    
+    //Set up Dumby events as a dictionary, like the json will be most likely doing
     
     let dummyEvents = [
-        ("SXSW", "2/18/2015"),
-        ("Pitch 'n Hit Event", "2/29/2015"),
-        ("Naturally Boulder", "4/15/2015"),
-        ("Pitchlandia", "5/5/2015"),
-        ("TechCrunch Pitch", "5/12/2015"),
-        ("Winter Blues Buster", "6/3/2015"),
-        ("Tri-State Ice Breaker", "6/15/2015"),
-        ("Lucky Diamond", "6/20/2015")
+        ["eventName":"SXSW", "eventDate":"2/18/2015", "eventDescription":"Add event description"],
+        ["eventName":"Pitch 'n Hit Event", "eventDate":"2/29/2015", "eventDescription":"Add event description"],
+        ["eventName":"Naturally Boulder", "eventDate":"4/15/2015", "eventDescription":"Add event description"],
+        ["eventName":"Pitchlandia", "eventDate":"5/5/2015", "eventDescription":"Add event description"],
+        ["eventName":"TechCrunch Pitch", "eventDate":"5/12/2015", "eventDescription":"Add event description"],
+        ["eventName":"Winter Blues Buster", "eventDate":"6/3/2015", "eventDescription":"Add event description"],
+        ["eventName":"Tri-State Ice Breaker", "eventDate":"6/15/2015", "eventDescription":"Add event description"],
+        ["eventName":"Lucky Diamond", "eventDate":"6/20/2015", "eventDescription":"Add event description"]
     ]
     
     
+    //This is a required function for a tableview. It controlls how many sections of the table is split into
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    //This is a required function for a tableview. It is used to set the number of rows to display in the tableview
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        //Here we're setting the num of rows to the size of the dummy Dictionary of events
         return dummyEvents.count
     }
     
+    //This is a required funtion for a tableview. This method is used to set the content in each row of the table
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        //First we will initialize a UITableViewCell, we will also use the dequeResuable cell as it is good practice
         var cell = tableView.dequeueReusableCellWithIdentifier("event", forIndexPath: indexPath) as UITableViewCell
         
-        let (eventTitle, eventDate) = dummyEvents[indexPath.row]
+        //create an event object from the Dictionary of dummby data
+        let event = dummyEvents[indexPath.row] as Dictionary
         
-        cell.textLabel?.text = eventTitle
-        cell.detailTextLabel?.text = eventDate
+        //Now let's add the event data to the cell
+       
+        //First we will grab each element by calling the contentView.viewWithTag method. I have numbered each element with individual tags in the prototype cell in the storyboard. text labels are tags 1-3, and the images are 10 and 11
         
-        //add star icon
-        var starIcon = UIImage(named: "IconCell")
-        cell.imageView?.image = starIcon
+        //Set the event's name, date, and Description
+        (cell.contentView.viewWithTag(1) as UILabel).text = event["eventName"] as String?
+        (cell.contentView.viewWithTag(2) as UILabel).text = event["eventDate"] as String?
+        (cell.contentView.viewWithTag(3) as UILabel).text = event["eventDescription"] as String?
+        
+        //Set the event's stock image and the button on the right of the cell which favorites them
+        (cell.contentView.viewWithTag(10) as UIImageView).image = UIImage(named: "IconCell")
+        (cell.contentView.viewWithTag(11) as UIButton).setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+        
+        //Not a big fan of it highlighting the cells upon selection, so let's turn that off
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         
         return cell
     }

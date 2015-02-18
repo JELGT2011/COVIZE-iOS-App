@@ -16,13 +16,14 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     ]
     
     let filters = [
-        ("Industry Specific"),
-        ("Minority Executive"),
-        ("Female Executive")
+        ("Local Events Only"),
+        ("Industry Specific Events"),
+        ("Ethnic/Minority Founder"),
+        ("Female Founder")
     ]
     
     let recommended = [
-        ("Use Recommended Filters")
+        ("Use Comapny Profile to set Filters")
     ]
     
     var sortSelectedCell:NSIndexPath = NSIndexPath()
@@ -67,6 +68,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if(indexPath.row == 0) {
                 //Set the selected cell to the first cell
                 sortSelectedCell = indexPath
+                
                 //Set its accessory type to the checkmark
                 cell.accessoryType = .Checkmark
             } else {
@@ -74,23 +76,32 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.accessoryType = .None
             }
             
+            //Now actually set the text to be shown in the cell
             cell.textLabel?.text = sorting[indexPath.row]
             
+        //Now we are moving on the the other section of filters
         } else if ( indexPath.section == 1){
+            //Set the cell's text
             cell.textLabel?.text = filters[indexPath.row]
             
+            //create a toggle switch, default its state to false, add it to the cell's accessory view
             var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
             enabledSwitch.on = false
             cell.accessoryView = enabledSwitch
 
             
         } else {
+            //Set the cell's text
             cell.textLabel?.text = recommended[indexPath.row]
             
+            //create a toggle switch, default its state to false, add it to the cell's accessory views
             var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
             enabledSwitch.on = false
             cell.accessoryView = enabledSwitch
         }
+        
+        //Not a big fan of it highlighting the cells upon selection, so let's turn that off
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
     }
