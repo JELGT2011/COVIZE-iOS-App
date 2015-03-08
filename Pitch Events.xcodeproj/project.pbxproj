@@ -17,6 +17,7 @@
 		E9D1617F1A910492005953CF /* Pitch_EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */; };
 		E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618C1A910EA2005953CF /* EventTableViewController.swift */; };
 		E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618E1A910EEE005953CF /* FilterViewController.swift */; };
+		E9F69D141A9BD8270066CC4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F69D131A9BD8270066CC4E /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_EventsTests.swift; sourceTree = "<group>"; };
 		E9D1618C1A910EA2005953CF /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		E9D1618E1A910EEE005953CF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		E9F69D131A9BD8270066CC4E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				E9D161651A910492005953CF /* AppDelegate.swift */,
 				E9D1618C1A910EA2005953CF /* EventTableViewController.swift */,
 				E9D1618E1A910EEE005953CF /* FilterViewController.swift */,
+				E9F69D131A9BD8270066CC4E /* LoginViewController.swift */,
 				483D04B71A912673003B8521 /* EventModel.swift */,
 				E9D1616C1A910492005953CF /* Main.storyboard */,
 				E9D1616F1A910492005953CF /* Images.xcassets */,
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F69D141A9BD8270066CC4E /* LoginViewController.swift in Sources */,
 				E9D161661A910492005953CF /* AppDelegate.swift in Sources */,
 				E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */,
 				E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */,
