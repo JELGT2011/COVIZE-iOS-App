@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		483D04B81A912673003B8521 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D04B71A912673003B8521 /* EventModel.swift */; };
 		483D04BA1A91286C003B8521 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D04B91A91286C003B8521 /* SwiftyJSON.swift */; };
+		E947D9641AAD49B800908562 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E947D9631AAD49B800908562 /* Alamofire.swift */; };
 		E9D161661A910492005953CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D161651A910492005953CF /* AppDelegate.swift */; };
 		E9D161691A910492005953CF /* Pitch_Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9D161671A910492005953CF /* Pitch_Events.xcdatamodeld */; };
 		E9D1616E1A910492005953CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D1616C1A910492005953CF /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		483D04B71A912673003B8521 /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		483D04B91A91286C003B8521 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		E947D9631AAD49B800908562 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		E9D161601A910492005953CF /* Pitch Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D161641A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D161651A910492005953CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				483D04B91A91286C003B8521 /* SwiftyJSON.swift */,
 				E9D161651A910492005953CF /* AppDelegate.swift */,
+				E947D9631AAD49B800908562 /* Alamofire.swift */,
 				E9D1618C1A910EA2005953CF /* EventTableViewController.swift */,
 				E9D1618E1A910EEE005953CF /* FilterViewController.swift */,
 				E9F69D131A9BD8270066CC4E /* LoginViewController.swift */,
@@ -229,6 +232,7 @@
 			files = (
 				E9F69D141A9BD8270066CC4E /* LoginViewController.swift in Sources */,
 				E9D161661A910492005953CF /* AppDelegate.swift in Sources */,
+				E947D9641AAD49B800908562 /* Alamofire.swift in Sources */,
 				E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */,
 				E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */,
 				483D04BA1A91286C003B8521 /* SwiftyJSON.swift in Sources */,

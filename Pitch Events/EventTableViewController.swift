@@ -67,43 +67,32 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         return cell
     }
     
-    override func viewDidLoad() { //attempt to pull JSON if view loads (code based on JSON/swift tutorial found here: http://www.raywenderlich.com/82706/working-with-json-in-swift-tutorial )
+    override func viewDidLoad() {
         
         super.viewDidLoad()
-        //startConnection() //starts json connection
-
+        
+        //requests events via json stream from the website
+        fetchEvents() 
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /* //meant to get JSON data from our URL, doesn't currently work
-    func startConnection(){
-        let urlPath: String = "https://website-covize-pitch-alerts-jelgt2011-1.c9.io/api/pitch_events/"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
-        connection.start()
-    }
-    
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!){
-        self.data.appendData(data)
-    }
-    
-    func buttonAction(sender: UIButton!){
+
+    // Get JSON data from our URL
+    func fetchEvents(){
         
+        let urlPath: String = "https://website-covize-pitch-alerts-jelgt2011-1.c9.io/api/pitch_events/"
+        
+        //Link to Alamofire git hub page with resources https://github.com/Alamofire/Alamofire
+        //This makes a call to the Alamofire library, currently the source code is in the project. The line with request make a GET call to the website, and the .response call following lets Alamofire know we are expecting a JSON in return
+        request(.GET, "https://website-covize-pitch-alerts-jelgt2011-1.c9.io/api/pitch_events/")
+            .responseJSON { (_, _, JSON, _) in
+                //Now ween need to parse the JSON stream that comes in
+                println(JSON)
+        }
     }
-    
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        // throwing an error on the line below (can't figure out where the error message is)
-        var err: NSError
-        //var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-        //println(jsonResult)
-  
-    }
-    */
     
     /*
     // MARK: - Navigation
