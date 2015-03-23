@@ -18,6 +18,8 @@
 		E9D1617F1A910492005953CF /* Pitch_EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */; };
 		E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618C1A910EA2005953CF /* EventTableViewController.swift */; };
 		E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618E1A910EEE005953CF /* FilterViewController.swift */; };
+		E9E525341AB21402007CACE2 /* DetailedEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */; };
+		E9F411DD1ABF62C500224E44 /* CompanyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F411DC1ABF62C500224E44 /* CompanyProfile.swift */; };
 		E9F69D141A9BD8270066CC4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F69D131A9BD8270066CC4E /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_EventsTests.swift; sourceTree = "<group>"; };
 		E9D1618C1A910EA2005953CF /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		E9D1618E1A910EEE005953CF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEventViewController.swift; sourceTree = "<group>"; };
+		E9F411DC1ABF62C500224E44 /* CompanyProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyProfile.swift; sourceTree = "<group>"; };
 		E9F69D131A9BD8270066CC4E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,16 +93,13 @@
 		E9D161621A910492005953CF /* Pitch Events */ = {
 			isa = PBXGroup;
 			children = (
-				483D04B91A91286C003B8521 /* SwiftyJSON.swift */,
 				E9D161651A910492005953CF /* AppDelegate.swift */,
-				E947D9631AAD49B800908562 /* Alamofire.swift */,
-				E9D1618C1A910EA2005953CF /* EventTableViewController.swift */,
-				E9D1618E1A910EEE005953CF /* FilterViewController.swift */,
-				E9F69D131A9BD8270066CC4E /* LoginViewController.swift */,
-				483D04B71A912673003B8521 /* EventModel.swift */,
 				E9D1616C1A910492005953CF /* Main.storyboard */,
-				E9D1616F1A910492005953CF /* Images.xcassets */,
+				E9F411E01ABF88A000224E44 /* Application Classes */,
+				E9F411E11ABF88F500224E44 /* View Controllers */,
+				E9F411DF1ABF888600224E44 /* Libraries */,
 				E9D161711A910492005953CF /* LaunchScreen.xib */,
+				E9D1616F1A910492005953CF /* Images.xcassets */,
 				E9D161671A910492005953CF /* Pitch_Events.xcdatamodeld */,
 				E9D161631A910492005953CF /* Supporting Files */,
 			);
@@ -128,6 +129,35 @@
 				E9D1617D1A910492005953CF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9F411DF1ABF888600224E44 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				483D04B91A91286C003B8521 /* SwiftyJSON.swift */,
+				E947D9631AAD49B800908562 /* Alamofire.swift */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		E9F411E01ABF88A000224E44 /* Application Classes */ = {
+			isa = PBXGroup;
+			children = (
+				483D04B71A912673003B8521 /* EventModel.swift */,
+				E9F411DC1ABF62C500224E44 /* CompanyProfile.swift */,
+			);
+			name = "Application Classes";
+			sourceTree = "<group>";
+		};
+		E9F411E11ABF88F500224E44 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9F69D131A9BD8270066CC4E /* LoginViewController.swift */,
+				E9D1618C1A910EA2005953CF /* EventTableViewController.swift */,
+				E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */,
+				E9D1618E1A910EEE005953CF /* FilterViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F69D141A9BD8270066CC4E /* LoginViewController.swift in Sources */,
+				E9F411DD1ABF62C500224E44 /* CompanyProfile.swift in Sources */,
 				E9D161661A910492005953CF /* AppDelegate.swift in Sources */,
 				E947D9641AAD49B800908562 /* Alamofire.swift in Sources */,
 				E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */,
@@ -238,6 +269,7 @@
 				483D04BA1A91286C003B8521 /* SwiftyJSON.swift in Sources */,
 				483D04B81A912673003B8521 /* EventModel.swift in Sources */,
 				E9D161691A910492005953CF /* Pitch_Events.xcdatamodeld in Sources */,
+				E9E525341AB21402007CACE2 /* DetailedEventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
