@@ -46,9 +46,9 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         //First we will grab each element by calling the contentView.viewWithTag method. I have numbered each element with individual tags in the prototype cell in the storyboard. text labels are tags 1-3, and the images are 10 and 11
         
         //Set the event's name, date, and Description
-        (cell.contentView.viewWithTag(1) as UILabel).text = event.getEventName()
+        (cell.contentView.viewWithTag(1) as UILabel).text = event.eventName
         (cell.contentView.viewWithTag(2) as UILabel).text = event.getEventStart()
-        (cell.contentView.viewWithTag(3) as UILabel).text = event.getEventLink()
+        (cell.contentView.viewWithTag(3) as UILabel).text = "hosted by " + event.orgName
         
         //Set the event's stock image and the button on the right of the cell which favorites them
         (cell.contentView.viewWithTag(10) as UIImageView).image = UIImage(named: "IconCell")

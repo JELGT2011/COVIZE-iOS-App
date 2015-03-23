@@ -31,16 +31,24 @@ class EventModel: NSObject, Printable {
         return "Event Name: \(eventName), Organization: \(orgName)\n"
     }
     
-    func getEventName() ->String{
-        return eventName
+    
+    func getEventLocation() ->String{
+        return city + ", " + state
     }
     
+    //change start and end once we get db validation
     func getEventStart() ->String{
-        return eventStart
+        return eventStart.substringToIndex(advance(eventStart.startIndex, 16))
+        
     }
     
-    func getEventLink() ->String{
-        return eventLink
+    func getEventEnd() ->String{
+        return eventEnd.substringToIndex(advance(eventEnd.startIndex, 16))
+        
+    }
+    
+    func getContactInfo() ->String{
+        return contactName +  " - " + contactNumber + "\n\nEmail: " + contactEmail
     }
     
     func toggleFavorite(){

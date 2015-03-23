@@ -13,10 +13,10 @@ class DetailedEventViewController: UIViewController {
     //This variable will be set as the EventTableViewController's prepare for segue method is called
     @IBOutlet weak var OrganizationName: UILabel!
     @IBOutlet weak var EventDates: UILabel!
-    @IBOutlet var EventDetailsLink: UIView!
+    @IBOutlet weak var EventDetailsLink: UILabel!
     @IBOutlet weak var EventLocation: UILabel!
-    @IBOutlet weak var EventDescription: UITextView!
-    @IBOutlet weak var EventContacts: UITextView!
+    @IBOutlet weak var EventDescription: UILabel!
+    @IBOutlet weak var EventContacts: UILabel!
     @IBOutlet weak var EventName: UILabel!
     
     
@@ -26,8 +26,14 @@ class DetailedEventViewController: UIViewController {
         super.viewDidLoad()
 
         // take the event's data and set the labels
-        EventName.text = currentEvent.getEventName()
-        EventDescription.text = currentEvent.getEventStart()
+        EventName.text = currentEvent.eventName
+        OrganizationName.text = currentEvent.orgName
+        //EventDescription.text = currentEvent.eventStart
+
+        EventDetailsLink.text = currentEvent.eventLink
+        EventDates.text = currentEvent.getEventStart() + " to " + currentEvent.getEventEnd()
+        EventLocation.text = currentEvent.getEventLocation()
+        EventContacts.text = currentEvent.getContactInfo()
         
         
     }
