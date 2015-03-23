@@ -23,7 +23,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     ]
     
     let recommended = [
-        ("Use Comapny Profile to set Filters")
+        ("Use Company Profile to set Filters")
     ]
     
     var sortSelectedCell:NSIndexPath = NSIndexPath()
