@@ -349,7 +349,7 @@
                         <outlet property="EventContacts" destination="pGy-y4-q97" id="9bA-hd-Yvv"/>
                         <outlet property="EventDates" destination="Xfp-a6-MmD" id="57X-se-TRu"/>
                         <outlet property="EventDescription" destination="BzZ-pB-9hU" id="RM0-nH-rIR"/>
-                        <outlet property="EventDetailsLink" destination="Jhd-gN-fb6" id="aPv-mm-kgP"/>
+                        <outlet property="EventDetailsLink" destination="eL5-Wj-u2O" id="rVO-EO-Jf6"/>
                         <outlet property="EventLocation" destination="S0S-Ol-2ag" id="lPW-Lj-n5D"/>
                         <outlet property="EventName" destination="dHV-J7-9mz" id="xgw-YE-FUj"/>
                         <outlet property="OrganizationName" destination="xji-Ji-Tdn" id="BWj-PD-TuK"/>
