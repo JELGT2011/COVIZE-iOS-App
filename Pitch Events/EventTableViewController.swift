@@ -52,7 +52,14 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         
         //Set the event's stock image and the button on the right of the cell which favorites them
         (cell.contentView.viewWithTag(10) as UIImageView).image = UIImage(named: "IconCell")
-        (cell.contentView.viewWithTag(11) as UIButton).setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+        
+        var favoriteButton: UIButton = (cell.contentView.viewWithTag(11) as UIButton)
+        
+        if(event.isFavorite()){
+            favoriteButton.setImage(UIImage(named: "favoriteFull"), forState: .Normal)
+        } else{
+            favoriteButton.setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+        }
         
         //Not a big fan of it highlighting the cells upon selection, so let's turn that off
         cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -168,11 +175,11 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Check to see if we are transitioning to the detailed event view
-        if let detailedEventVeiw = segue.destinationViewController as? DetailedEventViewController{
+        if let detailedEventView = segue.destinationViewController as? DetailedEventViewController{
         
             if let indexPath = tableView.indexPathForSelectedRow() {
                 let selectedEvent = Events[indexPath.row]
-                detailedEventVeiw.currentEvent = selectedEvent
+                detailedEventView.currentEvent = selectedEvent
                 println("sending data to detail")
             
             }
