@@ -51,10 +51,6 @@ class EventModel: NSObject, Printable {
         return contactName +  " - " + contactNumber + "\n\nEmail: " + contactEmail
     }
     
-    func toggleFavorite(){
-        favorite = !favorite
-    }
-    
     func isFavorite() ->Bool{
         return favorite
     }

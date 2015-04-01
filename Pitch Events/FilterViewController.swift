@@ -10,6 +10,8 @@ import UIKit
 
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var filterTableView: UITableView!
+    
     let sorting = [
         ("Date: Most Recent"),
         ("Proximity")
@@ -117,9 +119,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // Do any additional setup after loading the view.
         

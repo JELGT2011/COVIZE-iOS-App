@@ -8,16 +8,17 @@
 
 import UIKit
 
+@objc
+protocol EventTableViewControllerDelegate {
+    optional func toggleMenuPanel()
+    optional func collapseMenuPanel()
+}
+
 class EventTableViewController: UIViewController, UITableViewDataSource, NSURLConnectionDataDelegate{
-    
-    var data = NSMutableData()
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    // Get JSON data from our URL
-    
-    //Set up Dumby events as a dictionary, like the json will be most likely doing
-    var Events: [EventModel] = [EventModel]()
+
+    @IBOutlet weak var tableView: UITableView! //used to set cell data when populating events table
+    var Events: [EventModel] = [EventModel]() //array to store events we get from the d
+    @IBOutlet weak var menuButton: UIBarButtonItem! //gets the menuButton created in storyboard
     
     //This is a required function for a tableview. It controlls how many sections of the table is split into
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -52,14 +53,15 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         
         //Set the event's stock image and the button on the right of the cell which favorites them
         (cell.contentView.viewWithTag(10) as UIImageView).image = UIImage(named: "IconCell")
+        (cell.contentView.viewWithTag(11) as UIButton).setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
         
-        var favoriteButton: UIButton = (cell.contentView.viewWithTag(11) as UIButton)
+        /*var favoriteButton: UIButton = (cell.contentView.viewWithTag(11) as UIButton)
         
         if(event.isFavorite()){
             favoriteButton.setImage(UIImage(named: "favoriteFull"), forState: .Normal)
         } else{
             favoriteButton.setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
-        }
+        }*/
         
         //Not a big fan of it highlighting the cells upon selection, so let's turn that off
         cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -70,15 +72,20 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+      
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
         //First thing we should do is request events via json stream from the website
         fetchEvents()
     }
     
     
-    //COMMENT LATER
+    //Get events from db via JSON
     func fetchEvents(){
         
         var retEvents: [EventModel] = [EventModel]()
@@ -169,7 +176,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         return newURL
     
     }
-    
     
     // This method is called before each transition between views
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
