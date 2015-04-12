@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		483D04B81A912673003B8521 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D04B71A912673003B8521 /* EventModel.swift */; };
 		483D04BA1A91286C003B8521 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D04B91A91286C003B8521 /* SwiftyJSON.swift */; };
-		E930E1B11ACB9E860094E500 /* CompanyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930E1B01ACB9E860094E500 /* CompanyProfileViewController.swift */; };
+		E930E1B11ACB9E860094E500 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930E1B01ACB9E860094E500 /* CredentialsViewController.swift */; };
 		E947D9641AAD49B800908562 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E947D9631AAD49B800908562 /* Alamofire.swift */; };
 		E97A70341ACB375E00BE6478 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A70331ACB375E00BE6478 /* SWRevealViewController.m */; };
 		E97A70361ACB438900BE6478 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A70351ACB438900BE6478 /* MenuViewController.swift */; };
+		E9C099F51ACF2F820009AA47 /* BasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C099F41ACF2F820009AA47 /* BasicInfoViewController.swift */; };
+		E9C099F71ACF2F9B0009AA47 /* InitialFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C099F61ACF2F9B0009AA47 /* InitialFiltersViewController.swift */; };
+		E9C099FB1ADB0C9F0009AA47 /* InputPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C099FA1ADB0C9F0009AA47 /* InputPickerController.swift */; };
 		E9D161661A910492005953CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D161651A910492005953CF /* AppDelegate.swift */; };
 		E9D161691A910492005953CF /* Pitch_Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9D161671A910492005953CF /* Pitch_Events.xcdatamodeld */; };
 		E9D1616E1A910492005953CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D1616C1A910492005953CF /* Main.storyboard */; };
@@ -39,12 +42,15 @@
 /* Begin PBXFileReference section */
 		483D04B71A912673003B8521 /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		483D04B91A91286C003B8521 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		E930E1B01ACB9E860094E500 /* CompanyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyProfileViewController.swift; sourceTree = "<group>"; };
+		E930E1B01ACB9E860094E500 /* CredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
 		E947D9631AAD49B800908562 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		E97A70311ACB375D00BE6478 /* Pitch Events-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pitch Events-Bridging-Header.h"; sourceTree = "<group>"; };
 		E97A70321ACB375E00BE6478 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		E97A70331ACB375E00BE6478 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		E97A70351ACB438900BE6478 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		E9C099F41ACF2F820009AA47 /* BasicInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicInfoViewController.swift; sourceTree = "<group>"; };
+		E9C099F61ACF2F9B0009AA47 /* InitialFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialFiltersViewController.swift; sourceTree = "<group>"; };
+		E9C099FA1ADB0C9F0009AA47 /* InputPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPickerController.swift; sourceTree = "<group>"; };
 		E9D161601A910492005953CF /* Pitch Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D161641A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D161651A910492005953CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 			children = (
 				483D04B71A912673003B8521 /* EventModel.swift */,
 				E9F411DC1ABF62C500224E44 /* CompanyProfile.swift */,
+				E9C099FA1ADB0C9F0009AA47 /* InputPickerController.swift */,
 			);
 			name = "Application Classes";
 			sourceTree = "<group>";
@@ -168,7 +175,9 @@
 				E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */,
 				E97A70351ACB438900BE6478 /* MenuViewController.swift */,
 				E9D1618E1A910EEE005953CF /* FilterViewController.swift */,
-				E930E1B01ACB9E860094E500 /* CompanyProfileViewController.swift */,
+				E930E1B01ACB9E860094E500 /* CredentialsViewController.swift */,
+				E9C099F41ACF2F820009AA47 /* BasicInfoViewController.swift */,
+				E9C099F61ACF2F9B0009AA47 /* InitialFiltersViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -278,9 +287,12 @@
 				E9D161661A910492005953CF /* AppDelegate.swift in Sources */,
 				E947D9641AAD49B800908562 /* Alamofire.swift in Sources */,
 				E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */,
+				E9C099F51ACF2F820009AA47 /* BasicInfoViewController.swift in Sources */,
 				E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */,
 				483D04BA1A91286C003B8521 /* SwiftyJSON.swift in Sources */,
-				E930E1B11ACB9E860094E500 /* CompanyProfileViewController.swift in Sources */,
+				E9C099FB1ADB0C9F0009AA47 /* InputPickerController.swift in Sources */,
+				E9C099F71ACF2F9B0009AA47 /* InitialFiltersViewController.swift in Sources */,
+				E930E1B11ACB9E860094E500 /* CredentialsViewController.swift in Sources */,
 				E97A70361ACB438900BE6478 /* MenuViewController.swift in Sources */,
 				483D04B81A912673003B8521 /* EventModel.swift in Sources */,
 				E97A70341ACB375E00BE6478 /* SWRevealViewController.m in Sources */,

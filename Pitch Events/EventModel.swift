@@ -25,8 +25,6 @@ class EventModel: NSObject, Printable {
     let ethnic: String
     let industry: String
     
-    var favorite: Bool
-    
     override var description: String {
         return "Event Name: \(eventName), Organization: \(orgName)\n"
     }
@@ -51,10 +49,6 @@ class EventModel: NSObject, Printable {
         return contactName +  " - " + contactNumber + "\n\nEmail: " + contactEmail
     }
     
-    func isFavorite() ->Bool{
-        return favorite
-    }
-    
     
     init(eventName: String?, orgName: String?, city: String?, state: String?, eventStart: String, eventEnd: String?, regDeadline: String?, eventLink: String?, contactName: String?, contactNumber: String?, contactEmail: String?, location: String?, women: Bool?, ethnic: String?, industry: String?) {
         
@@ -73,7 +67,6 @@ class EventModel: NSObject, Printable {
         self.industry = industry ?? ""
         self.women = women ?? false
         self.ethnic = ethnic ?? ""
-        self.favorite = false
         
     }
 }

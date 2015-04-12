@@ -16,9 +16,15 @@ protocol EventTableViewControllerDelegate {
 
 class EventTableViewController: UIViewController, UITableViewDataSource, NSURLConnectionDataDelegate{
 
+    //UI Elements we need
     @IBOutlet weak var tableView: UITableView! //used to set cell data when populating events table
-    var Events: [EventModel] = [EventModel]() //array to store events we get from the d
     @IBOutlet weak var menuButton: UIBarButtonItem! //gets the menuButton created in storyboard
+    
+    //Persistant variables
+    var Events: [EventModel] = [EventModel]() //array to store events we get from the db
+    var companyProfile: CompanyProfile = CompanyProfile() //set to a blank profile, if new profile then set in new account views otherwise will persist from phone storage (TO-DO)
+    var Favorites: [EventModel] = [EventModel]() //array to store events that have been marked as favorites (Persists TO-DO)
+    
     
     //This is a required function for a tableview. It controlls how many sections of the table is split into
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
