@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1514" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CompanyProfile" representedClassName="Pitch_Events.CompanyProfile" syncable="YES">
+        <attribute name="capitalGoal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eMFounder" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="femaleFounder" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="fundraising" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="industry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preferIndustry" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="preferLocal" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="EventModel" representedClassName="Pitch_Events.EventModel" syncable="YES">
+        <attribute name="address_1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address_2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact_email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="detail_link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ethnic" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="event_end" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_start" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="industry" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lattitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="org_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registration_deadline" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registration_link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="woman" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CompanyProfile" positionX="-54" positionY="-9" width="128" height="210"/>
+        <element name="EventModel" positionX="-36" positionY="90" width="128" height="358"/>
+    </elements>
 </model>

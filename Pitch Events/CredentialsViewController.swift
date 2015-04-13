@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class CredentailsViewController: UIViewController{
     
@@ -58,14 +59,19 @@ class CredentailsViewController: UIViewController{
         
         // Check to see if we are transitioning to the detailed event view
         if let basicInfo = segue.destinationViewController as? BasicInfoViewController{
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
+            
+            let entity = NSEntityDescription.entityForName("CompanyProfile", inManagedObjectContext: managedContext)
+            let CompanyProfile = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+            
             //pass on company name, industry, and locale
-            basicInfo.PersonalName = PersonalName.text
-            basicInfo.Email = Email.text
-            basicInfo.Password = Password.text
+            CompanyProfile.setValue(PersonalName.text, forKey: "name")
+            CompanyProfile.setValue(Email.text, forKey: "email")
+            
+            basicInfo.CompanyProfile = CompanyProfile
             
         }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     
     //Called when a touch is registered, We use this to dismiss the keyboard when the background is clicked

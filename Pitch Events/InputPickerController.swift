@@ -2,7 +2,7 @@
 //  inputPickerController.swift
 //  Pitch Events
 //
-//  Created by Austin Delk on 4/12/15.
+//  Created by Cameron Jones on 4/12/15.
 //  Copyright (c) 2015 Covize. All rights reserved.
 //
 

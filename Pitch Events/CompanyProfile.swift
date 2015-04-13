@@ -2,71 +2,51 @@
 //  CompanyProfile.swift
 //  Pitch Events
 //
-//  Created by Austin Delk on 3/22/15.
+//  Created by Cameron Jones on 3/22/15.
 //  Copyright (c) 2015 Covize. All rights reserved.
 //
 
 import Foundation
+import CoreData
 
 
-class CompanyProfile: NSObject, Printable{
-    var name: String
-    var email: String
-    var password: String
-    var companyName: String
-    var industry: String
-    var localeCity: String
-    var localeState: String
-    var femaleFounder: Bool
-    var ethnicMinorityFounder: Bool
-    var preferLocal: Bool
-    var preferIndustry: Bool
-    var capitalGoal: String
-    var fundraisingStatus: String
+class CompanyProfile: NSManagedObject, Printable{
+    @NSManaged var name: String?
+    @NSManaged var email: String?
+    @NSManaged var companyName: String?
+    @NSManaged var industry: String?
+    @NSManaged var locale: String?
+    @NSManaged var femaleFounder: Bool
+    @NSManaged var eMFounder: Bool
+    @NSManaged var preferLocal: Bool
+    @NSManaged var preferIndustry: Bool
+    @NSManaged var capitalGoal: String?
+    @NSManaged var fundraising: String?
     
-    
+    /*
     override init() {
-        self.name = ""
-        self.email = ""
-        self.password = ""
-        self.companyName = ""
-        self.industry = ""
-        self.localeCity = ""
-        self.localeState = ""
         self.femaleFounder = false
-        self.ethnicMinorityFounder = false
+        self.eMFounder = false
         self.preferIndustry = false
         self.preferLocal = false
-        self.capitalGoal = ""
-        self.fundraisingStatus = ""
         
     }
+
     
-    func setCredentials(name: String, email: String, password: String){
+    init(name: String, email:String, companyName: String, industry: String, locale: String, femaleFounder: Bool, eMFounder: Bool, preferIndustry: Bool, preferLocal: Bool, capitalGoal: String, fundraising: String) {
         self.name = name
         self.email = email
-        self.password = password
-    }
-    
-    func setCompanyInfo(companyName: String, industry: String, city: String, state: String){
         self.companyName = companyName
         self.industry = industry
-        self.localeCity = city
-        self.localeState = state
-    }
-    
-    func setProfileFilters(femaleFounder: Bool, ethnicMinorityFounder: Bool, preferLocal: Bool, preferIndustry: Bool, capitalGoal: String, fundraisingStatus: String){
+        self.locale = locale
         self.femaleFounder = femaleFounder
-        self.ethnicMinorityFounder = ethnicMinorityFounder
-        self.preferLocal = preferLocal
+        self.eMFounder = eMFounder
         self.preferIndustry = preferIndustry
+        self.preferLocal = preferLocal
         self.capitalGoal = capitalGoal
-        self.fundraisingStatus = fundraisingStatus
+        self.fundraising = fundraising
         
     }
     
-    
-    
-    
-    
+    */
 }

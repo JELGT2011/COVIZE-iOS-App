@@ -7,12 +7,8 @@
 //
 
 import UIKit
+import CoreData
 
-@objc
-protocol EventTableViewControllerDelegate {
-    optional func toggleMenuPanel()
-    optional func collapseMenuPanel()
-}
 
 class EventTableViewController: UIViewController, UITableViewDataSource, NSURLConnectionDataDelegate{
 
@@ -21,8 +17,11 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     @IBOutlet weak var menuButton: UIBarButtonItem! //gets the menuButton created in storyboard
     
     //Persistant variables
-    var Events: [EventModel] = [EventModel]() //array to store events we get from the db
-    var companyProfile: CompanyProfile = CompanyProfile() //set to a blank profile, if new profile then set in new account views otherwise will persist from phone storage (TO-DO)
+    var ApplicationDelegate: AppDelegate?
+    var ManagedContext: NSManagedObjectContext?
+    //var Events: [EventModel] = [EventModel]() //array to store events we get from the db
+    var Events: [NSManagedObject] = [EventModel]()
+    var companyProfile: NSManagedObject? //set to a blank profile, if new profile then set in new account views otherwise will persist from phone storage (TO-DO)
     var Favorites: [EventModel] = [EventModel]() //array to store events that have been marked as favorites (Persists TO-DO)
     
     
@@ -46,28 +45,20 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         var cell = tableView.dequeueReusableCellWithIdentifier("event", forIndexPath: indexPath) as UITableViewCell
         
         //create an event object from the Dictionary of dummby data
-        let event = Events[indexPath.row]
+        let event = Events[indexPath.row] as EventModel
         
         //Now let's add the event data to the cell
        
         //First we will grab each element by calling the contentView.viewWithTag method. I have numbered each element with individual tags in the prototype cell in the storyboard. text labels are tags 1-3, and the images are 10 and 11
         
         //Set the event's name, date, and Description
-        (cell.contentView.viewWithTag(1) as UILabel).text = event.eventName
+        (cell.contentView.viewWithTag(1) as UILabel).text = event.valueForKey("event_name") as? String
         (cell.contentView.viewWithTag(2) as UILabel).text = event.getEventStart()
-        (cell.contentView.viewWithTag(3) as UILabel).text = "hosted by " + event.orgName
+        (cell.contentView.viewWithTag(3) as UILabel).text = "hosted by " + (event.valueForKey("org_name") as String)
         
         //Set the event's stock image and the button on the right of the cell which favorites them
         (cell.contentView.viewWithTag(10) as UIImageView).image = UIImage(named: "IconCell")
         (cell.contentView.viewWithTag(11) as UIButton).setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
-        
-        /*var favoriteButton: UIButton = (cell.contentView.viewWithTag(11) as UIButton)
-        
-        if(event.isFavorite()){
-            favoriteButton.setImage(UIImage(named: "favoriteFull"), forState: .Normal)
-        } else{
-            favoriteButton.setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
-        }*/
         
         //Not a big fan of it highlighting the cells upon selection, so let's turn that off
         cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -86,6 +77,10 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        //initialize our application delegate and managed context variables so we can use core data
+        ApplicationDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        ManagedContext = ApplicationDelegate?.managedObjectContext
+        
         //First thing we should do is request events via json stream from the website
         fetchEvents()
     }
@@ -93,8 +88,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     
     //Get events from db via JSON
     func fetchEvents(){
-        
-        var retEvents: [EventModel] = [EventModel]()
         
         //create a variable url that we can appened arguments to in order to limit event sizing ect.
         var url = "http://covize-pitch-alerts.herokuapp.com/api/pitch_events"
@@ -111,6 +104,19 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                 //Now ween need to parse the JSON stream that comes in
                 if(error != nil) {
                     NSLog("Error: \(error)")
+                    
+                    //For whatever reason we have not been able to make contact with the database, let's tap into coredata and get the last set of events we pulled
+                    let fetchRequest: NSFetchRequest = NSFetchRequest(entityName:"EventModel")
+                    var error: NSError?
+                    
+                    //here we are asking the ManagedContext to fetch all entities with a the name "EventModel"
+                    let fetchedResults = self.ManagedContext?.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+                    
+                    if let results = fetchedResults {
+                        self.Events = results //we have fetched the last pulled events from coredata, set to the Events array
+                    } else {
+                        println("Could not fetch \(error), \(error!.userInfo)") //really striking out here...guess no saved events
+                    }
                 }
                 else {
                     //Use the swiftyJson library to format the output from the website
@@ -122,40 +128,87 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                     //create an array of empty events, which follow the EventModel class
                     var events = [EventModel]()
                     
+                    //First thing, before we parse the JSON response, let's get rid of all the old events
+                    let fetchRequest: NSFetchRequest = NSFetchRequest(entityName:"EventModel")
+                    var error: NSError?
+                    let fetchedResults = self.ManagedContext?.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]? //get those events
+                    
+                    //if we did get the events then let's step through the array of them and for each have the ManagedContext delete them
+                    if let events = fetchedResults {
+                        for event in events{
+                            self.ManagedContext?.deleteObject(event)
+                        }
+                    }
+                    
                     //For every json entry in the json array create a new EventModel object and story in events array
                     for eventDict in eventArray {
                         
                         //grab each data point from the json entry
-                        var eventName: String? = eventDict["event_name"].stringValue
-                        var orgName: String? = eventDict["org_name"].stringValue
-                        //address_1 is street
-                        //address_2 is additional address info
-                        var city : String? = eventDict["city"].stringValue
-                        var state: String = eventDict["state"].stringValue
-                        //zip is zip
-                        var eventStart: String = eventDict["event_start"].stringValue
-                        var eventEnd: String = eventDict["event_end"].stringValue
-                        var regDeadline: String = eventDict["registration_deadline"].stringValue
-                        var eventLink: String = eventDict["detail_link"].stringValue
-                        var contactName: String = eventDict["contact_name"].stringValue
-                        var contactNumber: String = eventDict["contact_number"].stringValue
-                        var contactEmail: String = eventDict["contact_email"].stringValue
+                        var event_name: String? = eventDict["event_name"].stringValue
+                        var org_name: String? = eventDict["org_name"].stringValue
+                        var address_1: String? = eventDict["address_1"].stringValue //address_1 is street
+                        var address_2: String? = eventDict["address_2"].stringValue //address_2 is additional address info
+                        var city: String? = eventDict["city"].stringValue
+                        var state: String? = eventDict["state"].stringValue
+                        var zip: String? = eventDict["zip"].stringValue
+                        var event_start: String? = eventDict["event_start"].stringValue
+                        var event_end: String? = eventDict["event_end"].stringValue
+                        var registration_deadline: String? = eventDict["registration_deadline"].stringValue
+                        var detail_link: String? = eventDict["detail_link"].stringValue
+                        //should also be a registration_link
+                        var contact_name: String? = eventDict["contact_name"].stringValue
+                        var contact_number: String? = eventDict["contact_number"].stringValue
+                        var contact_email: String? = eventDict["contact_email"].stringValue
                         
                         //we need to take in longitude and lattitude to get city
-                        var location: String = ""
+                        var longitude: String? = eventDict["longitude"].stringValue
+                        var lattitude: String? = eventDict["lattitude"].stringValue
+                        var locale: String = "" //To be added to JSON
                         
-                        //women is taken in right now as bool, but ethnic is now and SHOULD be
-                        var women: Bool = eventDict["women"].boolValue
-                        var ethnic: String = eventDict["ethnic"].stringValue
-                        var industry: String = eventDict["industry"].stringValue
+                        //Event filtering flags
+                        var women: Bool? = eventDict["women"].boolValue
+                        var ethnic: Bool? = eventDict["ethnic"].boolValue
+                        var industry: Bool? = eventDict["industry"].boolValue
                         
                         //create a new EventModel object
-                        var event = EventModel(eventName: eventName, orgName: orgName, city: city, state: state, eventStart: eventStart, eventEnd: eventEnd, regDeadline: regDeadline, eventLink: eventLink, contactName: contactName, contactNumber: contactNumber, contactEmail: contactEmail, location: location, women: women, ethnic: ethnic, industry: industry)
+                        let entity =  NSEntityDescription.entityForName("EventModel", inManagedObjectContext: self.ManagedContext!)
+                        
+                        let event = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:self.ManagedContext!) as EventModel
+                        
+                        //set JSON values to the new EventModel
+                        event.setValue(event_name, forKey: "event_name")
+                        event.setValue(org_name, forKey: "org_name")
+                        event.setValue(address_1, forKey: "address_1")
+                        event.setValue(address_2, forKey: "address_2")
+                        event.setValue(city, forKey: "city")
+                        event.setValue(state, forKey: "state")
+                        event.setValue(zip, forKey: "zip")
+                        event.setValue(event_start, forKey: "event_start")
+                        event.setValue(event_end, forKey: "event_end")
+                        event.setValue(registration_deadline, forKey: "registration_deadline")
+                        event.setValue(detail_link, forKey: "detail_link")
+                        //REGISTRATION LINK
+                        event.setValue(contact_name, forKey: "contact_name")
+                        event.setValue(contact_number, forKey: "contact_number")
+                        event.setValue(contact_email, forKey: "contact_email")
+                        event.setValue(longitude, forKey: "longitude")
+                        event.setValue(lattitude, forKey: "lattitude")
+                        event.setValue(locale, forKey: "locale")
+                        event.setValue(women, forKey: "woman")
+                        event.setValue(ethnic, forKey: "ethnic")
+                        event.setValue(industry, forKey: "industry")
+                        
+                        //let's save these new events for a rainy day
+                        var error: NSError?
+                        if (self.ManagedContext?.save(&error) == false){
+                            println("Could not save \(error), \(error?.userInfo)")
+                        }
                         
                         //add this new event object to the events array
                         events.append(event)
+                        
                     }
-                    self.Events = events
+                    self.Events = events //Store the newly fetched events in the global array
                     
                     //Once the request returns we need to tell the table to refresh
                     self.tableView.reloadData()
@@ -191,7 +244,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         
             if let indexPath = tableView.indexPathForSelectedRow() {
                 let selectedEvent = Events[indexPath.row]
-                detailedEventView.currentEvent = selectedEvent
+                detailedEventView.currentEvent = selectedEvent as? EventModel
                 println("sending data to detail")
             
             }

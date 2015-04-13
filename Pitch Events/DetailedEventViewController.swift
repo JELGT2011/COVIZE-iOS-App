@@ -20,20 +20,19 @@ class DetailedEventViewController: UIViewController {
     @IBOutlet weak var EventName: UILabel!
     
     
-    var currentEvent: EventModel = EventModel(eventName: "", orgName: "", city: "", state: "", eventStart: "", eventEnd: "", regDeadline: "", eventLink: "", contactName: "", contactNumber: "", contactEmail: "", location: "", women: false, ethnic: "", industry: "")
+    var currentEvent: EventModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // take the event's data and set the labels
-        EventName.text = currentEvent.eventName
-        OrganizationName.text = currentEvent.orgName
-        //EventDescription.text = currentEvent.eventStart
-
-        EventDetailsLink.text = currentEvent.eventLink
-        EventDates.text = currentEvent.getEventStart() + " to " + currentEvent.getEventEnd()
-        EventLocation.text = currentEvent.getEventLocation()
-        EventContacts.text = currentEvent.getContactInfo()
+        EventName.text = currentEvent?.valueForKey("event_name") as? String
+        OrganizationName.text = currentEvent?.valueForKey("org_name") as? String
+        
+        EventDetailsLink.text = currentEvent?.valueForKey("detail_link") as? String
+        EventDates.text = (currentEvent?.valueForKey("event_start") as String) + "-" + (currentEvent?.valueForKey("event_end") as String)
+        EventLocation.text = currentEvent?.getEventLocation()
+        EventContacts.text = currentEvent?.getContactInfo()
         
         
     }

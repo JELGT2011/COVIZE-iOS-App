@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class BasicInfoViewController: UIViewController, UITextFieldDelegate{
     
@@ -24,9 +25,7 @@ class BasicInfoViewController: UIViewController, UITextFieldDelegate{
     var locPickerController: InputPickerController!
     
     //Passed on from Credentials Page
-    var PersonalName:String = ""
-    var Email:String = ""
-    var Password:String = ""
+    var CompanyProfile: NSManagedObject?
     
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
@@ -101,12 +100,17 @@ class BasicInfoViewController: UIViewController, UITextFieldDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Check to see if we are transitioning to the detailed event view
-        if let initialFilters = segue.destinationViewController as? InitialFiltersViewController{
-            //pass on name, email, and password
+        if let initialSettings = segue.destinationViewController as? InitialSettingsViewController{
+            
+            //set values
+            CompanyProfile?.setValue(Industry.text, forKey: "industry")
+            CompanyProfile?.setValue(CompanyName.text, forKey: "companyName")
+            CompanyProfile?.setValue(Locale.text, forKey: "locale")
+            
+            //pass on companyProfile
+            initialSettings.CompanyProfile = CompanyProfile
             
         }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     
     func validateFields() -> Bool{

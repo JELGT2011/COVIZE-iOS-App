@@ -1210,10 +1210,10 @@
             </objects>
             <point key="canvasLocation" x="-1014" y="1703"/>
         </scene>
-        <!--Initial Filters View Controller-->
+        <!--Initial Settings View Controller-->
         <scene sceneID="x2v-hE-ZES">
             <objects>
-                <viewController storyboardIdentifier="InitialFiltersView" id="6Ro-Qa-1iI" customClass="InitialFiltersViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialFiltersView" id="6Ro-Qa-1iI" customClass="InitialSettingsViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ru5-V0-UTT"/>
                         <viewControllerLayoutGuide type="bottom" id="aD1-e3-ole"/>
@@ -1374,6 +1374,14 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="CapitalGoal" destination="iWM-1V-IaE" id="4aZ-Cb-P0i"/>
+                        <outlet property="EMFounder" destination="AsB-3S-0Y4" id="4Re-Rm-wYl"/>
+                        <outlet property="FemaleFounder" destination="LdN-Uf-r49" id="diG-MA-nCm"/>
+                        <outlet property="Fundraising" destination="xYI-1M-gmf" id="yBM-k9-d83"/>
+                        <outlet property="PrioritizeIndustry" destination="ohC-I4-4CP" id="Ka5-xE-rLf"/>
+                        <outlet property="PrioritizeLocal" destination="y6z-qL-zMc" id="LiD-A1-Oxu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lN2-4u-Te8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
