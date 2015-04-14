@@ -1,23 +1,20 @@
 //
-//  CompanyProfileViewController.swift
+//  GeneralInfoViewController.swift
 //  Pitch Events
 //
-//  Created by Austin Delk on 3/31/15.
+//  Created by Cameron Jones on 3/31/15.
 //  Copyright (c) 2015 Covize. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-class CredentailsViewController: UIViewController{
+class GeneralInfoViewController: UIViewController{
     
     
     @IBOutlet weak var PersonalName: UITextField!
     @IBOutlet weak var Email: UITextField!
-    
-    //!!!!!!!!!!!!!TO-DO!!!!!!!!!!!!! maybe not storing the password as a String at somepoint would be a good idea
-    @IBOutlet weak var Password: UITextField!
-    @IBOutlet weak var ConfirmPass: UITextField!
+    @IBOutlet weak var CompanyName: UITextField!
     @IBOutlet weak var ErrorLabel: UILabel!
     
     
@@ -38,16 +35,12 @@ class CredentailsViewController: UIViewController{
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         
         //Check to make sure we are transitioning to the next signup screen
-        if (identifier == "BasicInfoViewController"){
-            ErrorLabel.hidden = false // show error msg
-            ErrorLabel.text? = ""
-            
+        if (identifier == "CompanyInfoViewController"){
             //If we are going to next sign up screen, let's validate the data and if good then preform segue
             if(validateFields()){
                 return true
             } else{
-                return true //during testing let's move on...
-                //return false
+                return false
             }
         } else {
             //We aren't transitioning to the next sign up screen (probably cancel button was clicked), allow the transition
@@ -58,7 +51,7 @@ class CredentailsViewController: UIViewController{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Check to see if we are transitioning to the detailed event view
-        if let basicInfo = segue.destinationViewController as? BasicInfoViewController{
+        if let companyInfo = segue.destinationViewController as? CompanyInfoViewController{
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             
@@ -68,8 +61,9 @@ class CredentailsViewController: UIViewController{
             //pass on company name, industry, and locale
             CompanyProfile.setValue(PersonalName.text, forKey: "name")
             CompanyProfile.setValue(Email.text, forKey: "email")
+            CompanyProfile.setValue(CompanyName.text, forKey:"company_name")
             
-            basicInfo.CompanyProfile = CompanyProfile
+            companyInfo.CompanyProfile = CompanyProfile
             
         }
     }
@@ -83,10 +77,8 @@ class CredentailsViewController: UIViewController{
         PersonalName.resignFirstResponder()
         Email.endEditing(true)
         Email.resignFirstResponder()
-        Password.endEditing(true)
-        Password.resignFirstResponder()
-        ConfirmPass.endEditing(true)
-        ConfirmPass.resignFirstResponder()
+        CompanyName.endEditing(true)
+        CompanyName.resignFirstResponder() 
     }
 
     
@@ -101,42 +93,26 @@ class CredentailsViewController: UIViewController{
             errorMsg += "Please check that you provided your name ex. John Smith\n"
             
             ErrorLabel.hidden = false // show error msg
-            ErrorLabel.text? += errorMsg //append what was wrong
+            ErrorLabel.text? = errorMsg //append what was wrong
             
             retValue = false
-        } else {
-            //Let's validate also that a First and Last name was given
-            
-            //TO-DO
-            
-        }
-        
-        //Validate email
-        if(!isValidEmail(Email.text)){
+        }else if(!isValidEmail(Email.text)){
             errorMsg += "Oops, you might have misstyped your email\n"
             
             ErrorLabel.hidden = false // show error msg
-            ErrorLabel.text? += errorMsg //append what was wrong
+            ErrorLabel.text? = errorMsg //append what was wrong
+            
+            retValue = false
+        }else if(CompanyName.text?.isEmpty == true){
+            errorMsg = "Please check that you provided a company name\n"
+            
+            ErrorLabel.hidden = false // show error msg
+            ErrorLabel.text? = errorMsg //append what was wrong
             
             retValue = false
         }
         
         //Check for black entries, then check to confirm they are same
-        if(Password.text.isEmpty == true || ConfirmPass.text.isEmpty == true){
-            errorMsg += "Check to make sure you entred your password twice\n"
-            
-            ErrorLabel.hidden = false // show error msg
-            ErrorLabel.text? += errorMsg //append what was wrong
-            
-            retValue = false
-        } else if(Password.text != ConfirmPass.text) {
-            errorMsg += "Passwords didn't match! Try retyping them\n"
-            
-            ErrorLabel.hidden = false // show error msg
-            ErrorLabel.text? += errorMsg //append what was wrong
-            
-            retValue = false
-        }
         
         
         return retValue

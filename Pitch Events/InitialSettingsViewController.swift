@@ -1,5 +1,5 @@
 //
-//  InitialFiltersViewController.swift
+//  InitialSettingsViewController.swift
 //  Pitch Events
 //
 //  Created by Cameron Jones on 4/3/15.
@@ -15,8 +15,6 @@ class InitialSettingsViewController: UIViewController{
     @IBOutlet weak var EMFounder: UISwitch!
     @IBOutlet weak var PreferLocal: UISwitch!
     @IBOutlet weak var PreferIndustry: UISwitch!
-    @IBOutlet weak var Fundraising: UITextField!
-    @IBOutlet weak var CapitalGoal: UITextField!
     
     var CompanyProfile: NSManagedObject?
     
@@ -43,12 +41,11 @@ class InitialSettingsViewController: UIViewController{
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             
-            CompanyProfile?.setValue(FemaleFounder.on, forKey: "femaleFounder")
-            CompanyProfile?.setValue(EMFounder.on, forKey: "eMFounder")
-            CompanyProfile?.setValue(PreferLocal.on, forKey: "preferLocal")
-            CompanyProfile?.setValue(PreferIndustry.on, forKey: "preferIndustry")
-            CompanyProfile?.setValue(Fundraising.text, forKey: "fundraising")
-            CompanyProfile?.setValue(CapitalGoal.text, forKey: "capitalGoal")
+            //CompanyProfile?.setValue(FemaleFounder.on, forKey: "female_founder")
+            //CompanyProfile?.setValue(EMFounder.on, forKey: "ethnic_founder")
+            //CompanyProfile?.setValue(PreferLocal.on, forKey: "prefer_local")
+            //CompanyProfile?.setValue(PreferIndustry.on, forKey: "prefer_industry")
+
             
             //pass on a Company Profile instance
             //eventPage.companyProfile = companyProfile

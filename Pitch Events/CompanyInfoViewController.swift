@@ -1,28 +1,35 @@
 //
-//  BasicInfoViewController.swift
+//  CompanyInfoViewController.swift
 //  Pitch Events
 //
-//  Created by Austin Delk on 4/3/15.
+//  Created by Cameron Jones on 4/3/15.
 //  Copyright (c) 2015 Covize. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-class BasicInfoViewController: UIViewController, UITextFieldDelegate{
+class CompanyInfoViewController: UIViewController, UITextFieldDelegate{
     
-    @IBOutlet weak var CompanyName: UITextField!
     @IBOutlet weak var Industry: UITextField!
     @IBOutlet weak var Locale: UITextField!
     @IBOutlet weak var ErrorLabel: UILabel!
-    
+    @IBOutlet weak var Fundraising: UITextField!
+    @IBOutlet weak var CapitalGoal: UITextField!
     
     var industryPicker: UIPickerView?
     var localePicker: UIPickerView?
+    var fundPicker: UIPickerView?
+    var capPicker: UIPickerView?
+    //TO-DO add all data
     var industryData = ["Select the Closest Match", "Technology", "Other"]
     var localeData = ["Atlanta, GA", "Houston, Tx"]
+    var fundData = ["Just Beginning", "Completed"]
+    var capData = ["nothing", "all da monies"]
     var indPickerController: InputPickerController!
     var locPickerController: InputPickerController!
+    var fundPickerController: InputPickerController!
+    var capPickerController: InputPickerController!
     
     //Passed on from Credentials Page
     var CompanyProfile: NSManagedObject?
@@ -48,23 +55,26 @@ class BasicInfoViewController: UIViewController, UITextFieldDelegate{
         localePicker = UIPickerView()
         localePicker?.delegate = locPickerController
         localePicker?.dataSource = locPickerController
-
         Locale.inputView = localePicker
         Locale.delegate = self
         
-    }
-
-    //Handles the dismissing of the keyboard when background is touched
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        var touch: AnyObject? = touches.anyObject()
-        if ((touch?.view != industryPicker) || (touch?.view != localePicker)){
-            Industry.resignFirstResponder()
-            Locale.resignFirstResponder()
-        }
+        //and another for the Fundraising status
+        fundPickerController = InputPickerController(tfield: Fundraising, inputData: fundData)
+        fundPicker = UIPickerView()
+        fundPicker?.delegate = fundPickerController
+        fundPicker?.dataSource = fundPickerController
+        Fundraising.inputView = fundPicker
+        Fundraising.delegate = self
         
-        CompanyName.endEditing(true)
-        CompanyName.resignFirstResponder()
-
+        //lastly for the Capital Goal
+        capPickerController = InputPickerController(tfield: CapitalGoal, inputData: capData)
+        capPicker = UIPickerView()
+        capPicker?.delegate = capPickerController
+        capPicker?.dataSource = capPickerController
+        CapitalGoal.inputView = capPicker
+        CapitalGoal.delegate = self
+        
+        
     }
     
     //TextField Functionality to alow user touch input but no editing
@@ -81,10 +91,7 @@ class BasicInfoViewController: UIViewController, UITextFieldDelegate{
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         
         //Check to make sure we are transitioning to the next signup screen
-        if (identifier == "InitialFiltersViewController"){
-            ErrorLabel.hidden = false // show error msg
-            ErrorLabel.text? = ""
-            
+        if (identifier == "InitialSettingsViewController"){
             //If we are going to next sign up screen, let's validate the data and if good then preform segue
             if(validateFields()){
                 return true
@@ -104,8 +111,9 @@ class BasicInfoViewController: UIViewController, UITextFieldDelegate{
             
             //set values
             CompanyProfile?.setValue(Industry.text, forKey: "industry")
-            CompanyProfile?.setValue(CompanyName.text, forKey: "companyName")
             CompanyProfile?.setValue(Locale.text, forKey: "locale")
+            CompanyProfile?.setValue(Fundraising.text, forKey: "fundraising")
+            CompanyProfile?.setValue(CapitalGoal.text, forKey: "capital_goal")
             
             //pass on companyProfile
             initialSettings.CompanyProfile = CompanyProfile
@@ -117,14 +125,7 @@ class BasicInfoViewController: UIViewController, UITextFieldDelegate{
         var retValue:Bool = true
         var errorMsg = ""
         
-        if(CompanyName.text?.isEmpty == true){
-            errorMsg = "Please check that you provided a company name\n"
-            
-            ErrorLabel.hidden = false // show error msg
-            ErrorLabel.text? = errorMsg //append what was wrong
-            
-            retValue = false
-        } else if(Industry.text?.isEmpty == true){
+        if(Industry.text?.isEmpty == true){
             errorMsg = "Make sure you selected an industry"
             
             ErrorLabel.hidden = false
