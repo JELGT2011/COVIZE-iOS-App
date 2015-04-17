@@ -15,14 +15,17 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     //UI Elements we need
     @IBOutlet weak var tableView: UITableView! //used to set cell data when populating events table
     @IBOutlet weak var menuButton: UIBarButtonItem! //gets the menuButton created in storyboard
+    @IBOutlet weak var ViewFavoritEventsButton: UIBarButtonItem! //button used to toggle the favorited events in the table or searched events
     
     //Persistant variables
     var ApplicationDelegate: AppDelegate?
     var ManagedContext: NSManagedObjectContext?
     //var Events: [EventModel] = [EventModel]() //array to store events we get from the db
     var Events: [NSManagedObject] = [EventModel]()
-    var companyProfile: NSManagedObject? //set to a blank profile, if new profile then set in new account views otherwise will persist from phone storage (TO-DO)
+    var companyProfile: CompanyProfile? //will always be grabbed from core data in viewDidLoad
     var Favorites: [EventModel] = [EventModel]() //array to store events that have been marked as favorites (Persists TO-DO)
+    var FavoritesDisplayed: Bool = false
+    
     
     
     //This is a required function for a tableview. It controlls how many sections of the table is split into
@@ -53,16 +56,20 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         
         //Set the event's name, date, and Description
         (cell.contentView.viewWithTag(1) as UILabel).text = event.valueForKey("event_name") as? String
-        (cell.contentView.viewWithTag(2) as UILabel).text = event.getEventStart()
+        (cell.contentView.viewWithTag(2) as UILabel).text = event.getEventDateRange()
         (cell.contentView.viewWithTag(3) as UILabel).text = "hosted by " + (event.valueForKey("org_name") as String)
         
         //Set the event's stock image and the button on the right of the cell which favorites them
         (cell.contentView.viewWithTag(10) as UIImageView).image = UIImage(named: "IconCell")
-        (cell.contentView.viewWithTag(11) as UIButton).setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+        var favButton: UIButton = (cell.contentView.viewWithTag(11) as UIButton)
+        if(event.favorited == true){
+            favButton.setImage(UIImage(named: "favoriteFull"), forState: .Normal)
+        } else {
+            favButton.setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+        }
         
         //Not a big fan of it highlighting the cells upon selection, so let's turn that off
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        
         
         return cell
     }
@@ -70,18 +77,59 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+        
+        //initialize our application delegate and managed context variables so we can use core data
+        ApplicationDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        ManagedContext = ApplicationDelegate?.managedObjectContext!
+        
+        companyProfile = ApplicationDelegate?.companyProfile
+        println("Company-EventView: \(companyProfile?.company_name)")
+        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        //initialize our application delegate and managed context variables so we can use core data
-        ApplicationDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-        ManagedContext = ApplicationDelegate?.managedObjectContext
-        
         //First thing we should do is request events via json stream from the website
+        //Don't want to be making calls to the db all the time so the global var refreshEvents (in AppDelegate) will handle when we want to, if we don't then we need to pull events from the app delegate
+        if(ApplicationDelegate?.refreshEvents == true){
+            fetchEvents()
+        } else {
+            self.Events = (ApplicationDelegate?.Events)!
+        }
+        
+        //Let's set a timer to update the events from the data base every XXX amount of time (Either passively or actively)
+        //let timer = NSTimer.scheduledTimerWithTimeInterval(600.0, target: self, selector: "updateEvents", userInfo: nil, repeats: false) //10mins
+    }
+    
+    //Action for the ViewFavoriteEventsButton
+    @IBAction func ViewFavoriteEventsToggle(sender: AnyObject) {
+        //check FavoritesDisplayed
+        if(FavoritesDisplayed == false){
+            //then we will set to true, set Events var to the app delegate's Favorites array, and tell table to refresh
+            self.FavoritesDisplayed = true
+            if let favEvents = ApplicationDelegate?.Favorites{
+                self.Events = favEvents
+                tableView.reloadData()
+                self.ViewFavoritEventsButton.title = "Search" //also set the button's title so that its intuitive how to get back to reg view
+            }
+        } else {
+            //favs are currently shown. set favoritesDisplayed to false, set Events back to appDelegate's Events car, tell table to refresh
+            self.FavoritesDisplayed = false
+            if let events = ApplicationDelegate?.Events{
+                self.Events = events
+                tableView.reloadData()
+                self.ViewFavoritEventsButton.title = "Favorites" //set title back to O.G.
+            }
+        }
+    }
+    
+    func updateEvents(){
+        //can passively fetch events. now whenever the next time the Event table view is shown it will do it automatically
+        //refreshEvents = true
+        //OR we could activly fetch events here. Might be better because this would allow us to then to push notifications
         fetchEvents()
     }
     
@@ -155,7 +203,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         var event_end: String? = eventDict["event_end"].stringValue
                         var registration_deadline: String? = eventDict["registration_deadline"].stringValue
                         var detail_link: String? = eventDict["detail_link"].stringValue
-                        //should also be a registration_link
+                        var registration_link: String? = eventDict["registration_link"].stringValue
                         var contact_name: String? = eventDict["contact_name"].stringValue
                         var contact_number: String? = eventDict["contact_number"].stringValue
                         var contact_email: String? = eventDict["contact_email"].stringValue
@@ -187,7 +235,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         event.setValue(event_end, forKey: "event_end")
                         event.setValue(registration_deadline, forKey: "registration_deadline")
                         event.setValue(detail_link, forKey: "detail_link")
-                        //REGISTRATION LINK
+                        event.setValue(registration_link, forKey: "registration_link")
                         event.setValue(contact_name, forKey: "contact_name")
                         event.setValue(contact_number, forKey: "contact_number")
                         event.setValue(contact_email, forKey: "contact_email")
@@ -197,6 +245,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         event.setValue(women, forKey: "woman")
                         event.setValue(ethnic, forKey: "ethnic")
                         event.setValue(industry, forKey: "industry")
+                        event.setValue(false, forKey: "favorited") //set each event as default to non-favorited
                         
                         //let's save these new events for a rainy day
                         var error: NSError?
@@ -209,11 +258,14 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         
                     }
                     self.Events = events //Store the newly fetched events in the global array
+                    self.ApplicationDelegate?.Events = events
+                    
                     
                     //Once the request returns we need to tell the table to refresh
                     self.tableView.reloadData()
                 }
-        }   
+        }
+        ApplicationDelegate?.refreshEvents = false //set to false so that events don't keep being pulled
     }
     
     
@@ -223,20 +275,29 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     }
 
     
-    
+    //TO-DO
     func buildURL(url: String) -> String{
-        //TO-DO
         //do a check here to determine what flags are set in company profile, i.e. preferLocation, preferIndustry, womanFounder, etc.
         //Also if this is the free version only allow 5 events to be pulled
         
-        //right now for testing let's just pull 10 events to view
-        var newURL = url + "?limit=10"
+        var female_founder = companyProfile?.female_founder
+        var ethnic_founder = companyProfile?.ethnic_founder
+        var prefer_local = companyProfile?.prefer_local
+        var prefer_industry = companyProfile?.prefer_industry
+        
+        //By default this intial app is the free version, so only 5 events will be pulled from the db at a time
+        var limit = 5
+        var newURL = url + "?limit=\(limit)"
+        newURL += (female_founder == true) ? "&woman_founder=true" : ""
+        newURL += (ethnic_founder == true) ? "&ethnic_founder=true" : ""
+        newURL += (prefer_local == true) ? "&local=true" : ""
+        //Not yet supported by API //newURL += (prefer_industry == true) ? "&woman_founder=true" : ""
         
         return newURL
     
     }
     
-    // This method is called before each transition between views
+    //This method is called before each transition between views
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Check to see if we are transitioning to the detailed event view
@@ -244,13 +305,12 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         
             if let indexPath = tableView.indexPathForSelectedRow() {
                 let selectedEvent = Events[indexPath.row]
-                detailedEventView.currentEvent = selectedEvent as? EventModel
+                detailedEventView.currEvent = selectedEvent as? EventModel
+                detailedEventView.eventTable = self.tableView
                 println("sending data to detail")
             
             }
         }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
 
 

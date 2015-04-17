@@ -25,6 +25,7 @@
         <attribute name="event_end" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_start" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favorited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="industry" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lattitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
@@ -37,7 +38,7 @@
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="EventModel" positionX="-245" positionY="27" width="128" height="358"/>
+        <element name="EventModel" positionX="-245" positionY="27" width="128" height="373"/>
         <element name="CompanyProfile" positionX="-36" positionY="162" width="128" height="208"/>
     </elements>
 </model>

@@ -56,14 +56,14 @@ class GeneralInfoViewController: UIViewController{
             let managedContext = appDelegate.managedObjectContext!
             
             let entity = NSEntityDescription.entityForName("CompanyProfile", inManagedObjectContext: managedContext)
-            let CompanyProfile = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+            let companyProfile = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
             
             //pass on company name, industry, and locale
-            CompanyProfile.setValue(PersonalName.text, forKey: "name")
-            CompanyProfile.setValue(Email.text, forKey: "email")
-            CompanyProfile.setValue(CompanyName.text, forKey:"company_name")
+            companyProfile.setValue(PersonalName.text, forKey: "name")
+            companyProfile.setValue(Email.text, forKey: "email")
+            companyProfile.setValue(CompanyName.text, forKey:"company_name")
             
-            companyInfo.CompanyProfile = CompanyProfile
+            companyInfo.companyProfile = companyProfile
             
         }
     }

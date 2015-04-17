@@ -13,6 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var companyProfile: CompanyProfile? //Global Company Profile, pulled from all views that need it
+    var refreshEvents: Bool? //Global var used by event view to know when to pull new events from the database
+    var Events: [EventModel]?
+    var Favorites: [EventModel] = [EventModel]()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

@@ -16,7 +16,7 @@ class InitialSettingsViewController: UIViewController{
     @IBOutlet weak var PreferLocal: UISwitch!
     @IBOutlet weak var PreferIndustry: UISwitch!
     
-    var CompanyProfile: NSManagedObject?
+    var companyProfile: NSManagedObject?
     
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
@@ -35,26 +35,24 @@ class InitialSettingsViewController: UIViewController{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        // Check to see if we are transitioning to the detailed event view
-        if let eventPage = segue.destinationViewController as? EventTableViewController{
-            //let's grap the managedContext again so that we can save the Company Profile
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            let managedContext = appDelegate.managedObjectContext!
-            
-            //CompanyProfile?.setValue(FemaleFounder.on, forKey: "female_founder")
-            //CompanyProfile?.setValue(EMFounder.on, forKey: "ethnic_founder")
-            //CompanyProfile?.setValue(PreferLocal.on, forKey: "prefer_local")
-            //CompanyProfile?.setValue(PreferIndustry.on, forKey: "prefer_industry")
+        //let's grap the managedContext again so that we can save the Company Profile
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        companyProfile?.setValue(FemaleFounder.on, forKey: "female_founder")
+        companyProfile?.setValue(EMFounder.on, forKey: "ethnic_founder")
+        companyProfile?.setValue(PreferLocal.on, forKey: "prefer_local")
+        companyProfile?.setValue(PreferIndustry.on, forKey: "prefer_industry")
 
             
-            //pass on a Company Profile instance
-            //eventPage.companyProfile = companyProfile
-            
-            //push companyProfile data to db
-            var error: NSError?
-            if !managedContext.save(&error) {
-                println("Could not save \(error), \(error?.userInfo)")
-            }
+        //pass on a Company Profile instance
+        appDelegate.companyProfile = (companyProfile as CompanyProfile)
+        appDelegate.refreshEvents = true //need to pull events from the db since this will be the first time running
+        
+        //push companyProfile data to local storage
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
         }
     }
 }

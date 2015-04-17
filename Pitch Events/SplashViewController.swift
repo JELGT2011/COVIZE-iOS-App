@@ -35,7 +35,11 @@ class SplashViewController: UIViewController {
         let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
         
         if (fetchedResults?.count > 0){
-            println("Count:  \(fetchedResults?.count)\n" + "Company Profile: \(fetchedResults?[0])")
+            appDelegate.companyProfile = (fetchedResults?[0] as CompanyProfile) //set the company profile
+            appDelegate.refreshEvents = true //tell the event view to pull a new set of events
+            println("Splash \((fetchedResults?[0] as CompanyProfile).company_name)")
+            println("AppDelegate \(appDelegate.companyProfile?.company_name)")
+            
             //We should segue to the Event Table View
             self.performSegueWithIdentifier("EventTableViewSegue", sender: self)
         } else {
@@ -47,13 +51,6 @@ class SplashViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
     }
     
 

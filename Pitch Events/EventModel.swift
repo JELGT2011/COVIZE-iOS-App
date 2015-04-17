@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 class EventModel: NSManagedObject, Printable {
+    @NSManaged var favorited: Bool
     @NSManaged var event_name: String
     @NSManaged var org_name: String
     @NSManaged var address_1: String
@@ -36,24 +37,85 @@ class EventModel: NSManagedObject, Printable {
         return "Event Name: \(event_name), Organization: \(org_name)\n"
     }
     
+    //simple isEqual, we'll say that any event that has the same name is the same event
+    func equals(object: AnyObject?) -> Bool {
+        return (object as EventModel).event_name == self.event_name
+    }
     
     //change start and end once we get db validation
-    func getEventStart() ->String?{
-        return event_start.substringToIndex(advance(event_start.startIndex, 16))
+    func getRegistrationDeadline() ->String?{
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
+        let regDeadline = dateFormatter.dateFromString(registration_deadline)
         
+        dateFormatter.dateStyle = .MediumStyle //ex. Dec 25, 2015
+        
+        let dateString = dateFormatter.stringFromDate(regDeadline!)
+        
+        return dateString
+    }
+    
+    func getEventStart() ->String{
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
+        let startDate = dateFormatter.dateFromString(event_start)
+        
+        dateFormatter.dateStyle = .MediumStyle //ex. Dec 25, 2015
+        dateFormatter.timeStyle = .ShortStyle //ex. 7:00 AM
+        
+        let dateString = dateFormatter.stringFromDate(startDate!)
+        
+        return dateString
     }
     
     func getEventEnd() ->String{
-        return event_end.substringToIndex(advance(event_end.startIndex, 16))
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
+        let endDate = dateFormatter.dateFromString(event_end)
+        
+        dateFormatter.dateStyle = .MediumStyle //ex. Dec 25, 2015
+        dateFormatter.timeStyle = .ShortStyle //ex. 7:00 AM
+        
+        let dateString = dateFormatter.stringFromDate(endDate!)
+        
+        return dateString
         
     }
     
-    func getContactInfo() ->String{
-        return contact_name +  " - " + contact_number + "\n\nEmail: " + contact_email
+    func getEventDateRange() ->String{
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
+        let startDate = dateFormatter.dateFromString(event_start)
+        let endDate = dateFormatter.dateFromString(event_end)
+        
+        dateFormatter.dateStyle = .ShortStyle //ex. 12/25/15
+        
+        let startString = dateFormatter.stringFromDate(startDate!)
+        let endString = dateFormatter.stringFromDate(endDate!)
+
+        return startString + " - " + endString
     }
     
     func getEventLocation() ->String{
-        return address_1 + " " + city + ", " + state + " " + zip
+        return address_1 + " " + address_2 + " " + city + ", " + state + " " + zip
+    }
+    
+    func getEventAddress() ->String{
+        return address_1 + " " + city + ", " + state
+    }
+    
+    //makes sure that at least one piece of contact info isn't empty, otherwise we won't show the contact section in the detailed event page
+    func isContactInfo() ->Bool{
+        if(contact_name.isEmpty == false){
+            return true
+        } else if(contact_email.isEmpty == false){
+            return true
+        } else if (contact_number.isEmpty == false){
+            return true
+        }else {
+            return false
+        }
     }
     
     /*

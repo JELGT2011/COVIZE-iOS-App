@@ -32,7 +32,7 @@ class CompanyInfoViewController: UIViewController, UITextFieldDelegate{
     var capPickerController: InputPickerController!
     
     //Passed on from Credentials Page
-    var CompanyProfile: NSManagedObject?
+    var companyProfile: NSManagedObject?
     
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
@@ -110,13 +110,13 @@ class CompanyInfoViewController: UIViewController, UITextFieldDelegate{
         if let initialSettings = segue.destinationViewController as? InitialSettingsViewController{
             
             //set values
-            CompanyProfile?.setValue(Industry.text, forKey: "industry")
-            CompanyProfile?.setValue(Locale.text, forKey: "locale")
-            CompanyProfile?.setValue(Fundraising.text, forKey: "fundraising")
-            CompanyProfile?.setValue(CapitalGoal.text, forKey: "capital_goal")
+            companyProfile?.setValue(Industry.text, forKey: "industry")
+            companyProfile?.setValue(Locale.text, forKey: "locale")
+            companyProfile?.setValue(Fundraising.text, forKey: "fundraising")
+            companyProfile?.setValue(CapitalGoal.text, forKey: "capital_goal")
             
             //pass on companyProfile
-            initialSettings.CompanyProfile = CompanyProfile
+            initialSettings.companyProfile = companyProfile
             
         }
     }

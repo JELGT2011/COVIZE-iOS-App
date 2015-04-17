@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var filterTableView: UITableView!
+    var ApplicationDelegate: AppDelegate?
+    var companyProfile: CompanyProfile?
+    var switchArr: [UISwitch]? = [UISwitch]()
     
     let sorting = [
-        ("Date: Most Recent"),
-        ("Proximity")
+        ("Event Date"),
+        ("Registration Deadline")
     ]
     
     let filters = [
@@ -86,11 +90,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //Set the cell's text
             cell.textLabel?.text = filters[indexPath.row]
             
-            //create a toggle switch, default its state to false, add it to the cell's accessory view
-            var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
-            enabledSwitch.on = false
+            //take the switches from the array and set them as the acessory view of each row
+            var enabledSwitch = switchArr?[indexPath.row]
             cell.accessoryView = enabledSwitch
-
             
         } else {
             //Set the cell's text
@@ -119,12 +121,43 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //On save we need to update the CompanyProfile attributes and also tell the eventTableView that it needs to fetch new events
+    @IBAction func saveFilters(sender: AnyObject) {
+        //switchArr (local,industry,ethnic,femal)
+        companyProfile?.prefer_local = (switchArr?[0].on)!
+        companyProfile?.prefer_industry = (switchArr?[1].on)!
+        companyProfile?.ethnic_founder = (switchArr?[2].on)!
+        companyProfile?.female_founder = (switchArr?[3].on)!
+        
+        //We have most likely changed the filters, let's pull new events
+        ApplicationDelegate?.refreshEvents = true
+        
+        self.performSegueWithIdentifier("saveFiltersSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ApplicationDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        companyProfile = ApplicationDelegate?.companyProfile
         
         
-        // Do any additional setup after loading the view.
+        //Initialize the toggles and set their values based on the company profile (local,industry,ethnic,female)
+        var flagSwitch = UISwitch(frame: CGRectZero) as UISwitch
+        flagSwitch.on = (companyProfile?.prefer_local)!
+        switchArr?.append(flagSwitch)
+        
+        flagSwitch = UISwitch(frame:CGRectZero) as UISwitch
+        flagSwitch.on = (companyProfile?.prefer_industry)!
+        switchArr?.append(flagSwitch)
+        
+        flagSwitch = UISwitch(frame:CGRectZero) as UISwitch
+        flagSwitch.on = (companyProfile?.ethnic_founder)!
+        switchArr?.append(flagSwitch)
+        
+        flagSwitch = UISwitch(frame:CGRectZero) as UISwitch
+        flagSwitch.on = (companyProfile?.female_founder)!
+        switchArr?.append(flagSwitch)
         
     }
     
@@ -133,15 +166,11 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     // Get the new view controller using segue.destinationViewController.
     // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
