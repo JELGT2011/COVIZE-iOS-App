@@ -33,7 +33,7 @@ class DetailedEventViewController: UIViewController {
     //Set's the info button next to the registration date to the registration date
     @IBAction func RegLink(sender: AnyObject) {
         if(currEvent?.registration_link.isEmpty == false){
-            if let regLink = NSURL(string: "www.google.com"/*(currEvent?.registration_link)!*/){
+            if let regLink = NSURL(string: (currEvent?.registration_link)!){
                 UIApplication.sharedApplication().openURL(regLink)
             }
         }
@@ -42,7 +42,7 @@ class DetailedEventViewController: UIViewController {
     //Sets the info button next to the details header to the details link
     @IBAction func EventDetailLink(sender: AnyObject) {
         if(currEvent?.detail_link.isEmpty == false){
-            if let detailLink = NSURL(string: "http://www.google.com"/*(currEvent?.detail_link)!*/){
+            if let detailLink = NSURL(string: (currEvent?.detail_link)!){
                 UIApplication.sharedApplication().openURL(detailLink)
             }
         }
@@ -53,14 +53,15 @@ class DetailedEventViewController: UIViewController {
         if(currEvent?.favorited == false){
             currEvent?.favorited = true
             appDelegate?.Favorites.append(currEvent!)
-            FavButton.setImage(UIImage(named: "favoriteFull"), forState: .Normal)
+            FavButton.setImage(UIImage(named: "FavoritedFull"), forState: .Normal)
+            
             eventTable?.reloadData()
         } else {
             currEvent?.favorited = false
             
             var i = 0
             if let favEvents = appDelegate?.Favorites{ //makes sure the Favorites exists, should be 100% of the time
-                if let currE = currEvent?{ //makes sure that currEvent exists, should also be 100% of the time
+                if let currE = currEvent{ //makes sure that currEvent exists, should also be 100% of the time
                     var favEvent = favEvents[i] //grab the first event from the Favorites array
                     
                     //Now we need to itterate through the Favorite array and check each event for equality. If we find an equal then we will now have its index so we can remove it
@@ -74,7 +75,7 @@ class DetailedEventViewController: UIViewController {
                 }
             }
             
-            FavButton.setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+            FavButton.setImage(UIImage(named: "FavoritedEmpty"), forState: .Normal)
             eventTable?.reloadData()
             
         }
@@ -83,13 +84,18 @@ class DetailedEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //change color of nav bar
+        //navigationController?.navigationBar.barTintColor = HextoColor.uicolorFromHex(0xADDDCF)
+        //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
         appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         
         if(currEvent?.favorited == true){
-            FavButton.setImage(UIImage(named: "favoriteFull"), forState: .Normal)
+            FavButton.setImage(UIImage(named: "FavoritedFull"), forState: .Normal)
             FavButton.frame = CGRectMake(354,93,30,26)
         } else {
-            FavButton.setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+            FavButton.setImage(UIImage(named: "FavoritedEmpty"), forState: .Normal)
         }
         
         if(currEvent?.registration_link.isEmpty == true){
@@ -102,6 +108,7 @@ class DetailedEventViewController: UIViewController {
         
         // take the event's data and set the labels
         //EventLogo
+        self.navigationItem.title = currEvent?.event_name
         EventName.text = currEvent?.event_name
         OrgName.text = currEvent?.org_name
         EventAddress.text = currEvent?.getEventAddress() //check get Location to make sure it outputs correct
@@ -112,43 +119,40 @@ class DetailedEventViewController: UIViewController {
     }
     
     func checkContactInfo(contactName:String?, contactEmail:String?, contactNumber:String?){
-        if(currEvent?.isContactInfo() == true){
-            if(contactName?.isEmpty == false){
-                ContactName.text = contactName?
-                
-                if(contactEmail?.isEmpty == false){ //check to see if email is empty
-                    ContactEmail.text = contactEmail?
-                    
-                } else if(contactNumber?.isEmpty == false){ //contact email was not entered so set number to its place and set the number label to hidden
-                    ContactEmail.text = contactNumber?
-                    ContactNumber.hidden = true
-                    
-                } else{ //both email and number were left blank hide them both
-                    ContactEmail.hidden = true
+        var cName = contactName?.isEmpty == false, cEmail = contactEmail?.isEmpty == false, cNumber = contactNumber?.isEmpty == false //true if value, false if empty
+        
+        //We really only want to put a contact name if there is at least an email or number as well
+        if(cName == true && (cEmail == true || cNumber == true)){
+            ContactName.text = contactName!
+            if(cEmail){
+                ContactEmail.text = contactEmail!
+                if(cNumber){
+                    ContactNumber.text = contactNumber!
+                } else {
                     ContactNumber.hidden = true
                 }
-            } else if(contactEmail?.isEmpty == false){ //name was left off put the email in the name slot
-                ContactName.text = contactEmail?
-                
-                if(contactNumber?.isEmpty == false){ //number isn't blank so set it to the email field and hide contact number label
-                    ContactEmail.text = contactNumber?
-                    ContactNumber.hidden = true
-                } else { //only email given so hide both the O.G. email slot and number
-                    ContactEmail.hidden = true
-                    ContactNumber.hidden = true
-                }
-            } else if(contactNumber?.isEmpty == false){ //number was the only thing provided set that to name's slot and hide others
-                ContactName.text = contactNumber?
-                ContactEmail.hidden = true
+            } else {
+                ContactEmail.text = contactNumber!
                 ContactNumber.hidden = true
             }
-        } else { //if none than hide the contact info label
-            ContactInfoHeader.hidden = true
-            ContactName.hidden = true
-            ContactEmail.hidden = true
-            ContactNumber.hidden = true
+        }else {
+            if(cEmail == true || cNumber == true){
+                //then no name was given but at east one other
+                ContactNumber.hidden = true //know we don't need this label
+                if(cEmail){
+                    ContactName.text = contactEmail!
+                    if(cNumber){
+                        ContactEmail.text = contactNumber!
+                    } else{
+                        ContactEmail.hidden = true
+                    }
+                } else{
+                    //no email or name
+                    ContactName.text = contactNumber!
+                    ContactEmail.hidden = true
+                }
+            }
         }
-
     }
 
     override func didReceiveMemoryWarning() {

@@ -10,12 +10,14 @@ import UIKit
 import CoreData
 
 
-class EventTableViewController: UIViewController, UITableViewDataSource, NSURLConnectionDataDelegate{
+class EventTableViewController: UIViewController, UITableViewDataSource, NSURLConnectionDataDelegate, ADBannerViewDelegate{
 
     //UI Elements we need
     @IBOutlet weak var tableView: UITableView! //used to set cell data when populating events table
     @IBOutlet weak var menuButton: UIBarButtonItem! //gets the menuButton created in storyboard
     @IBOutlet weak var ViewFavoritEventsButton: UIBarButtonItem! //button used to toggle the favorited events in the table or searched events
+    @IBOutlet weak var AdBanner: ADBannerView!
+    @IBOutlet weak var TotalEventsLabel: UILabel!
     
     //Persistant variables
     var ApplicationDelegate: AppDelegate?
@@ -45,27 +47,37 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //First we will initialize a UITableViewCell, we will also use the dequeResuable cell as it is good practice
-        var cell = tableView.dequeueReusableCellWithIdentifier("event", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("event", forIndexPath: indexPath) as! EventTableCell
         
         //create an event object from the Dictionary of dummby data
-        let event = Events[indexPath.row] as EventModel
+        let event = Events[indexPath.row] as! EventModel
         
         //Now let's add the event data to the cell
-       
-        //First we will grab each element by calling the contentView.viewWithTag method. I have numbered each element with individual tags in the prototype cell in the storyboard. text labels are tags 1-3, and the images are 10 and 11
-        
-        //Set the event's name, date, and Description
-        (cell.contentView.viewWithTag(1) as UILabel).text = event.valueForKey("event_name") as? String
-        (cell.contentView.viewWithTag(2) as UILabel).text = event.getEventDateRange()
-        (cell.contentView.viewWithTag(3) as UILabel).text = "hosted by " + (event.valueForKey("org_name") as String)
-        
+        cell.Title.text = event.valueForKey("event_name") as? String
+        cell.Organization.text = "hosted by " + (event.valueForKey("org_name") as! String)
+        cell.Location.text = event.getLocale()
+        cell.Dates.text = event.getEventDateRange()
+        cell.RegistrationDeadline.text = "Registration Deadline: " + event.getRegistrationDeadline()!
+
         //Set the event's stock image and the button on the right of the cell which favorites them
-        (cell.contentView.viewWithTag(10) as UIImageView).image = UIImage(named: "IconCell")
-        var favButton: UIButton = (cell.contentView.viewWithTag(11) as UIButton)
+        cell.Logo.image = UIImage(named: "IconCell")
+        var favButton: UIButton = cell.FavoriteButton
+        favButton.tag = indexPath.row
+        favButton.addTarget(self, action: "favButtonAction:", forControlEvents: .TouchUpInside)
+        
         if(event.favorited == true){
-            favButton.setImage(UIImage(named: "favoriteFull"), forState: .Normal)
+            favButton.setImage(UIImage(named: "FavoritedFull"), forState: .Normal)
         } else {
-            favButton.setImage(UIImage(named: "favoriteEmpty"), forState: .Normal)
+            favButton.setImage(UIImage(named: "FavoritedEmpty"), forState: .Normal)
+        }
+        
+        //Let's set the registration button stuff if there is a link otherwise hide it
+        var regButton: UIButton = cell.RegistrationButton
+        if(event.valueForKey("registration_link")?.isEmpty == false){
+            regButton.tag = indexPath.row
+            regButton.addTarget(self, action: "regButtonAction:", forControlEvents: .TouchUpInside)
+        } else{
+            regButton.hidden = true
         }
         
         //Not a big fan of it highlighting the cells upon selection, so let's turn that off
@@ -74,10 +86,90 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         return cell
     }
     
+    func favButtonAction(sender: AnyObject) {
+        //Attempt to get event from the sender
+        var favButton = sender as? UIButton
+        var currEvent = Events[favButton!.tag] as? EventModel
+        
+        //when star is clicked set this event to a favorite (set its favorited:Bool, add it to the Favorites[] in app delegate, and change the image to FavoriteFull
+        if(currEvent?.favorited == false){
+            currEvent?.favorited = true
+            self.ApplicationDelegate?.Favorites.append(currEvent!)
+            self.tableView.reloadData()
+        } else {
+            currEvent?.favorited = false
+            
+            //Get the index of the event in the App Delegate's Favorites array
+            var i = 0
+            if let favEvents = self.ApplicationDelegate?.Favorites{ //makes sure the Favorites exists, should be 100% of the time
+                if let currE = currEvent{ //makes sure that currEvent exists, should also be 100% of the time
+                    var favEvent = favEvents[i] //grab the first event from the Favorites array
+                    
+                    //Now we need to itterate through the Favorite array and check each event for equality. If we find an equal then we will now have its index so we can remove it
+                    while((favEvent.equals(currE) == false) && (favEvents.count > i+1)){ //if not equal and we are not at the last index
+                        i++ //increase index
+                        favEvent = favEvents[i] //set favEvent to the next event in the favorites array
+                    }
+                    
+                    //Now that we have found the index remove it from the array
+                    self.ApplicationDelegate?.Favorites.removeAtIndex(i)
+                }
+            }
+            self.tableView.reloadData()
+            
+        }
+        println("Favorites: \(self.ApplicationDelegate?.Favorites.count)")
+    }
+    
+    func regButtonAction(sender: AnyObject){
+        if let regButton = sender as? UIButton {
+            var currEvent = Events[regButton.tag] as! EventModel
+            if(currEvent.registration_link.isEmpty == false){
+                if let regLink = NSURL(string: currEvent.registration_link){
+                    UIApplication.sharedApplication().openURL(regLink)
+                }
+            }
+        }
+    }
+    
+    //Ad Banner Delegate Methods
+    func bannerViewWillLoadAd(banner: ADBannerView!) {
+        
+    }
+    
+    //iAd has an ad to be displayed
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        //show the ad banner
+        UIView.animateWithDuration(0.5, animations: {
+            self.AdBanner.hidden = false
+        })
+    }
+    
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        return true
+    }
+    
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        
+    }
+    
+    //For some reason there are no ads to display
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        //hide the ad banner
+        UIView.animateWithDuration(0.5, animations: {
+            self.AdBanner.hidden = true
+        })
+    }
+    
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //change color of nav bar
+        navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.blackColor()
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blackColor()
         
         //initialize our application delegate and managed context variables so we can use core data
         ApplicationDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
@@ -91,6 +183,10 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        //set up the Advertisements
+        self.AdBanner.delegate = self
+        self.AdBanner.hidden = true
         
         //First thing we should do is request events via json stream from the website
         //Don't want to be making calls to the db all the time so the global var refreshEvents (in AppDelegate) will handle when we want to, if we don't then we need to pull events from the app delegate
@@ -147,8 +243,9 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         //This makes a call using the Alamofire library, currently the source code is in the project
         
         //This line makes a GET call to the website, and then lets Alamofire know we are expecting a JSON in return
-        request(.GET, urlPath)
-            .responseJSON { (_, _, data, error) in
+        
+        
+        request(.GET, urlPath).responseJSON { (_, _, data, error) in
                 //Now ween need to parse the JSON stream that comes in
                 if(error != nil) {
                     NSLog("Error: \(error)")
@@ -158,7 +255,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                     var error: NSError?
                     
                     //here we are asking the ManagedContext to fetch all entities with a the name "EventModel"
-                    let fetchedResults = self.ManagedContext?.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+                    let fetchedResults = self.ManagedContext?.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
                     
                     if let results = fetchedResults {
                         self.Events = results //we have fetched the last pulled events from coredata, set to the Events array
@@ -179,7 +276,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                     //First thing, before we parse the JSON response, let's get rid of all the old events
                     let fetchRequest: NSFetchRequest = NSFetchRequest(entityName:"EventModel")
                     var error: NSError?
-                    let fetchedResults = self.ManagedContext?.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]? //get those events
+                    let fetchedResults = self.ManagedContext?.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]? //get those events
                     
                     //if we did get the events then let's step through the array of them and for each have the ManagedContext delete them
                     if let events = fetchedResults {
@@ -221,7 +318,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         //create a new EventModel object
                         let entity =  NSEntityDescription.entityForName("EventModel", inManagedObjectContext: self.ManagedContext!)
                         
-                        let event = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:self.ManagedContext!) as EventModel
+                        let event = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:self.ManagedContext!) as! EventModel
                         
                         //set JSON values to the new EventModel
                         event.setValue(event_name, forKey: "event_name")
@@ -257,9 +354,11 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         events.append(event)
                         
                     }
-                    self.Events = events //Store the newly fetched events in the global array
-                    self.ApplicationDelegate?.Events = events
+                    self.Events = events //Store the newly fetched events in the array
+                    self.ApplicationDelegate?.Events = events //Store in the global Application Delegat array as well
                     
+                    //TO-DO- Jason needs to add ability to see how many total events meet the filter criteria
+                    self.TotalEventsLabel.text = "Showing \(events.count) of 100 events"
                     
                     //Once the request returns we need to tell the table to refresh
                     self.tableView.reloadData()
@@ -284,6 +383,8 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         var ethnic_founder = companyProfile?.ethnic_founder
         var prefer_local = companyProfile?.prefer_local
         var prefer_industry = companyProfile?.prefer_industry
+        var sort_event_start = companyProfile?.sort_event_start
+        var sort_registration_deadline = companyProfile?.sort_registration_deadline
         
         //By default this intial app is the free version, so only 5 events will be pulled from the db at a time
         var limit = 5
@@ -292,9 +393,10 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         newURL += (ethnic_founder == true) ? "&ethnic_founder=true" : ""
         newURL += (prefer_local == true) ? "&local=true" : ""
         //Not yet supported by API //newURL += (prefer_industry == true) ? "&woman_founder=true" : ""
+        newURL += (sort_event_start == true) ? "&sort_order=true": ""
+        newURL += (sort_registration_deadline == true) ? "&sort_order=registration_deadline" : ""
         
         return newURL
-    
     }
     
     //This method is called before each transition between views

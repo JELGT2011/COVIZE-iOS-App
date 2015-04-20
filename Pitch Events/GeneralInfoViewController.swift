@@ -17,6 +17,10 @@ class GeneralInfoViewController: UIViewController{
     @IBOutlet weak var CompanyName: UITextField!
     @IBOutlet weak var ErrorLabel: UILabel!
     
+    //TextField no editing
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
+        return false
+    }
     
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
@@ -52,7 +56,7 @@ class GeneralInfoViewController: UIViewController{
         
         // Check to see if we are transitioning to the detailed event view
         if let companyInfo = segue.destinationViewController as? CompanyInfoViewController{
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             
             let entity = NSEntityDescription.entityForName("CompanyProfile", inManagedObjectContext: managedContext)
@@ -69,8 +73,7 @@ class GeneralInfoViewController: UIViewController{
     }
     
     //Called when a touch is registered, We use this to dismiss the keyboard when the background is clicked
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        var touch: AnyObject? = touches.anyObject()
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         
         //end editing of the text input, and then take focus off of the textfield
         PersonalName.endEditing(true)
@@ -122,8 +125,10 @@ class GeneralInfoViewController: UIViewController{
     func isValidEmail(email:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         
-        if let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx) {
-            return emailTest.evaluateWithObject(email)
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        if emailTest.evaluateWithObject(email) {
+            return true
         }
         return false
     }

@@ -15,6 +15,8 @@ class InputPickerController: NSObject, UIPickerViewDelegate, UIPickerViewDataSou
     init(tfield: UITextField, inputData: [String]){
         textField = tfield
         data = inputData
+        
+        //textField?.text = data[0] //set the initial text for the view
     }
     
     //Picker Funtionality
@@ -32,7 +34,8 @@ class InputPickerController: NSObject, UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //Set text to the selection
-        textField?.text = data[row]
-        textField?.resignFirstResponder()//Dismiss picker
+        var selectBool: Bool = (data[row] != "Select closest match")  && (data[row] != "Select closest major market") //checks to see if the prompt is selected
+        textField?.text = selectBool ? data[row] : textField?.text //if a prompt is selected then keep text same, otherwise set to new selection
     }
+
 }

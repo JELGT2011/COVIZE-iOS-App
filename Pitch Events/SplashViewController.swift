@@ -23,7 +23,7 @@ class SplashViewController: UIViewController {
     
     func checkFirstUse(){
         //Grab the app delegat and the managed context
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
         //Build a fetch request that will grab all entities of description CompanyProfile
@@ -32,12 +32,12 @@ class SplashViewController: UIViewController {
         //Check to see if we got any
         var error: NSError?
         
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
         
         if (fetchedResults?.count > 0){
-            appDelegate.companyProfile = (fetchedResults?[0] as CompanyProfile) //set the company profile
+            appDelegate.companyProfile = (fetchedResults?[0] as! CompanyProfile) //set the company profile
             appDelegate.refreshEvents = true //tell the event view to pull a new set of events
-            println("Splash \((fetchedResults?[0] as CompanyProfile).company_name)")
+            println("Splash \((fetchedResults?[0] as! CompanyProfile).company_name)")
             println("AppDelegate \(appDelegate.companyProfile?.company_name)")
             
             //We should segue to the Event Table View

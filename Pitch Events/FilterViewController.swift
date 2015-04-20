@@ -12,6 +12,9 @@ import CoreData
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var filterTableView: UITableView!
+    @IBOutlet weak var Industry: UILabel!
+    @IBOutlet weak var CapitalGoal: UILabel!
+    @IBOutlet weak var TableView: UITableView!
     var ApplicationDelegate: AppDelegate?
     var companyProfile: CompanyProfile?
     var switchArr: [UISwitch]? = [UISwitch]()
@@ -22,34 +25,30 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     ]
     
     let filters = [
-        ("Local Events Only"),
+        ("Local Events"),
         ("Industry Specific Events"),
-        ("Ethnic/Minority Founder"),
-        ("Female Founder")
+        ("Ethnic/Minority Founder Targeted Events"),
+        ("Female Founder Targeted Events")
     ]
-    
-    let recommended = [
-        ("Use Company Profile to set Filters")
-    ]
-    
+
     var sortSelectedCell:NSIndexPath = NSIndexPath()
+    var sort_event_start: Bool?
+    var sort_registration_deadline: Bool?
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0){
             return sorting.count
-        } else if (section == 1){
+        } else{
             return filters.count
-        } else {
-            return recommended.count
         }
     }
     
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         //If the selected row is in the "Sorted By" section and the selected row isn't the one that is already checked, then we're going to decheck the old cell and check the new one
         if ((indexPath.section == 0) && (sortSelectedCell.row != indexPath.row)){
@@ -59,6 +58,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             oldSelectedCell.accessoryType = .None
             newSelectedCell.accessoryType = .Checkmark
             
+            
             //set the selected cell var to the indexPath of the new cell
             sortSelectedCell = indexPath
         }
@@ -66,19 +66,18 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("filterSetting", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("filterSetting", forIndexPath: indexPath) as! UITableViewCell
         
         if (indexPath.section == 0){
+            println("Row: \(sorting[indexPath.row]) \(sort_event_start) \(sort_registration_deadline)")
+            var event_start = (sorting[indexPath.row] == "Event Date" && sort_event_start == true)
+            var reg_deadline = (sorting[indexPath.row] == "Registration Deadline" && sort_registration_deadline == true)
             
-            //This sets the first row in the "Sort By" Section to be checked by default
-            if(indexPath.row == 0) {
-                //Set the selected cell to the first cell
+            //check which cell we are putting in by the name, then check the bool set by company profile. We know that only one or the other is true
+            if(event_start || reg_deadline){
                 sortSelectedCell = indexPath
-                
-                //Set its accessory type to the checkmark
                 cell.accessoryType = .Checkmark
             } else {
-                //For every other sorting option set them to no checkmark
                 cell.accessoryType = .None
             }
             
@@ -86,7 +85,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.textLabel?.text = sorting[indexPath.row]
             
         //Now we are moving on the the other section of filters
-        } else if ( indexPath.section == 1){
+        } else{
             //Set the cell's text
             cell.textLabel?.text = filters[indexPath.row]
             
@@ -94,14 +93,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             var enabledSwitch = switchArr?[indexPath.row]
             cell.accessoryView = enabledSwitch
             
-        } else {
-            //Set the cell's text
-            cell.textLabel?.text = recommended[indexPath.row]
-            
-            //create a toggle switch, default its state to false, add it to the cell's accessory views
-            var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
-            enabledSwitch.on = false
-            cell.accessoryView = enabledSwitch
         }
         
         //Not a big fan of it highlighting the cells upon selection, so let's turn that off
@@ -113,11 +104,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == 0){
-            return "Sort By:"
-        } else if (section == 1){
-            return "Filter By:"
-        } else {
-            return "Default"
+            return "Sort Events By:"
+        } else{
+            return "Filter Events Based On:"
         }
     }
     
@@ -128,6 +117,16 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         companyProfile?.prefer_industry = (switchArr?[1].on)!
         companyProfile?.ethnic_founder = (switchArr?[2].on)!
         companyProfile?.female_founder = (switchArr?[3].on)!
+        
+        //set the sorting flags
+        var sortSelected = self.TableView.cellForRowAtIndexPath(sortSelectedCell)
+        if(sortSelected?.textLabel?.text == "Event Date"){
+            companyProfile?.sort_event_start = true
+            companyProfile?.sort_registration_deadline = false
+        } else{
+            companyProfile?.sort_event_start = false
+            companyProfile?.sort_registration_deadline = true
+        }
         
         //We have most likely changed the filters, let's pull new events
         ApplicationDelegate?.refreshEvents = true
@@ -158,6 +157,15 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         flagSwitch = UISwitch(frame:CGRectZero) as UISwitch
         flagSwitch.on = (companyProfile?.female_founder)!
         switchArr?.append(flagSwitch)
+        
+        //set the Company Profile data
+        self.navigationItem.title = companyProfile?.company_name
+        self.Industry.text = "Industry: \(companyProfile?.industry)"
+        self.CapitalGoal.text = "Capital Goal: \(companyProfile?.capital_goal)"
+        
+        //set the sorting settings from the company profile
+        self.sort_event_start = companyProfile?.sort_event_start
+        self.sort_registration_deadline = companyProfile?.sort_registration_deadline
         
     }
     

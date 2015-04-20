@@ -20,6 +20,8 @@ class CompanyProfile: NSManagedObject, Printable{
     @NSManaged var ethnic_founder: Bool
     @NSManaged var prefer_local: Bool
     @NSManaged var prefer_industry: Bool
+    @NSManaged var sort_event_start: Bool
+    @NSManaged var sort_registration_deadline: Bool
     @NSManaged var capital_goal: String?
     @NSManaged var fundraising: String?
     

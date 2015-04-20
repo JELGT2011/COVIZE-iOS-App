@@ -18,6 +18,11 @@ class InitialSettingsViewController: UIViewController{
     
     var companyProfile: NSManagedObject?
     
+    //TextField no editing
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
+        return false
+    }
+    
     //Called as the first method once this view has been set to be displayed
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +41,19 @@ class InitialSettingsViewController: UIViewController{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         //let's grap the managedContext again so that we can save the Company Profile
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
         companyProfile?.setValue(FemaleFounder.on, forKey: "female_founder")
         companyProfile?.setValue(EMFounder.on, forKey: "ethnic_founder")
         companyProfile?.setValue(PreferLocal.on, forKey: "prefer_local")
         companyProfile?.setValue(PreferIndustry.on, forKey: "prefer_industry")
+        companyProfile?.setValue(true, forKey: "sort_event_start")
+        companyProfile?.setValue(false, forKey: "sort_registration_deadline")
 
             
         //pass on a Company Profile instance
-        appDelegate.companyProfile = (companyProfile as CompanyProfile)
+        appDelegate.companyProfile = (companyProfile as! CompanyProfile)
         appDelegate.refreshEvents = true //need to pull events from the db since this will be the first time running
         
         //push companyProfile data to local storage

@@ -37,12 +37,12 @@ class EventModel: NSManagedObject, Printable {
         return "Event Name: \(event_name), Organization: \(org_name)\n"
     }
     
-    //simple isEqual, we'll say that any event that has the same name is the same event
+    //simple euality check, we'll say that any event that has the same name is the same event
     func equals(object: AnyObject?) -> Bool {
-        return (object as EventModel).event_name == self.event_name
+        return (object as! EventModel).event_name == self.event_name
     }
     
-    //change start and end once we get db validation
+    //ex. Dec 25, 2015
     func getRegistrationDeadline() ->String?{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
@@ -55,6 +55,7 @@ class EventModel: NSManagedObject, Printable {
         return dateString
     }
     
+    //ex. Dec 25, 2015 at 7:00 AM
     func getEventStart() ->String{
         
         let dateFormatter = NSDateFormatter()
@@ -69,6 +70,7 @@ class EventModel: NSManagedObject, Printable {
         return dateString
     }
     
+    //ex. Dec 25, 2015 at 7:00 AM
     func getEventEnd() ->String{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
@@ -83,6 +85,7 @@ class EventModel: NSManagedObject, Printable {
         
     }
     
+    //ex. 12/23/15 - 12/25/15
     func getEventDateRange() ->String{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
@@ -97,12 +100,18 @@ class EventModel: NSManagedObject, Printable {
         return startString + " - " + endString
     }
     
+    //ex. 123 Fairgrounds Ct 7235(condo # or something) Atlanta, GA 3-313
     func getEventLocation() ->String{
         return address_1 + " " + address_2 + " " + city + ", " + state + " " + zip
     }
     
+    //ex. 123 Fairgrounds Ct Atlanta, GA
     func getEventAddress() ->String{
         return address_1 + " " + city + ", " + state
+    }
+    
+    func getLocale() ->String{
+        return city + ", "  + state
     }
     
     //makes sure that at least one piece of contact info isn't empty, otherwise we won't show the contact section in the detailed event page
