@@ -12,6 +12,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prefer_industry" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="prefer_local" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="push_favorite_setting" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="push_new_setting" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sort_event_start" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sort_registration_deadline" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
@@ -31,6 +33,7 @@
         <attribute name="industry" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lattitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="org_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="registration_deadline" optional="YES" attributeType="String" syncable="YES"/>
@@ -40,7 +43,7 @@
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CompanyProfile" positionX="-36" positionY="162" width="128" height="240"/>
-        <element name="EventModel" positionX="-245" positionY="27" width="128" height="373"/>
+        <element name="CompanyProfile" positionX="-36" positionY="162" width="128" height="270"/>
+        <element name="EventModel" positionX="-245" positionY="27" width="128" height="390"/>
     </elements>
 </model>

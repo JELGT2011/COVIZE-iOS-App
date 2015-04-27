@@ -16,7 +16,7 @@ class SplashViewController: UIViewController {
 
         //Here we are going to display a nice splash screen BUT also check to see if a company profile has already been created by the user
         //If there is a company profile then we will head straight to the event table view, if NOT then we will direct the user to create one
-        
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         let timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "checkFirstUse", userInfo: nil, repeats: false) //Display splash screen for 8sec do segue logic
         
     }

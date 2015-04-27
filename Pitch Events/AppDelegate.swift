@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+        self.window?.backgroundColor = HextoColor.uicolorFromHex(0x000000)
         return true
     }
 
@@ -33,8 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        
+        var error: NSError?
+        //save all of the objects to local storage, events and company profile, also TO-DO favorites
+        if self.managedObjectContext!.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

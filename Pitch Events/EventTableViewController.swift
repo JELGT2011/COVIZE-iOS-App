@@ -57,10 +57,20 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         cell.Organization.text = "hosted by " + (event.valueForKey("org_name") as! String)
         cell.Location.text = event.getLocale()
         cell.Dates.text = event.getEventDateRange()
-        cell.RegistrationDeadline.text = "Registration Deadline: " + event.getRegistrationDeadline()!
+        cell.RegistrationDeadline.text = "Register by: " + event.getRegistrationDeadline()!
 
         //Set the event's stock image and the button on the right of the cell which favorites them
-        cell.Logo.image = UIImage(named: "IconCell")
+        //Haven't set up downloading a logo image for now let's default to the place holder
+        /* let logoImage = UIImage(data: event.logo)
+        
+        if(logoImage != nil){
+            cell.Logo.image = logoImage
+        } else{
+            cell.Logo.image = UIImage(named: "pitchAlertsBaloon")
+        } */
+        
+        cell.Logo.image = UIImage(named: "pitchAlertsBaloon")
+        
         var favButton: UIButton = cell.FavoriteButton
         favButton.tag = indexPath.row
         favButton.addTarget(self, action: "favButtonAction:", forControlEvents: .TouchUpInside)
@@ -73,7 +83,8 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         
         //Let's set the registration button stuff if there is a link otherwise hide it
         var regButton: UIButton = cell.RegistrationButton
-        if(event.valueForKey("registration_link")?.isEmpty == false){
+        if(event.registration_link.isEmpty == false){
+            regButton.hidden = false
             regButton.tag = indexPath.row
             regButton.addTarget(self, action: "regButtonAction:", forControlEvents: .TouchUpInside)
         } else{
@@ -166,10 +177,11 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         super.viewDidLoad()
         
         //change color of nav bar
-        navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.blackColor()
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blackColor()
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        navigationController?.navigationBar.barTintColor = HextoColor.uicolorFromHex(0x13342A)
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
         
         //initialize our application delegate and managed context variables so we can use core data
         ApplicationDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
@@ -209,7 +221,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
             if let favEvents = ApplicationDelegate?.Favorites{
                 self.Events = favEvents
                 tableView.reloadData()
-                self.ViewFavoritEventsButton.title = "Search" //also set the button's title so that its intuitive how to get back to reg view
+                self.ViewFavoritEventsButton.image = UIImage(named: "Search") //also set the button's title so that its intuitive how to get back to reg view
             }
         } else {
             //favs are currently shown. set favoritesDisplayed to false, set Events back to appDelegate's Events car, tell table to refresh
@@ -217,7 +229,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
             if let events = ApplicationDelegate?.Events{
                 self.Events = events
                 tableView.reloadData()
-                self.ViewFavoritEventsButton.title = "Favorites" //set title back to O.G.
+                self.ViewFavoritEventsButton.image = UIImage(named: "FavoritedFull") //set title back to O.G.
             }
         }
     }
@@ -272,8 +284,9 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                     
                     //create an array of empty events, which follow the EventModel class
                     var events = [EventModel]()
+                    self.ApplicationDelegate?.Favorites.removeAll() //we need to clear the favorites array because we will repopulate it later
                     
-                    //First thing, before we parse the JSON response, let's get rid of all the old events
+                    //First thing, before we parse the JSON response let's get rid of all the old events. EXCEPT for when the events have been marked as favorites in that case let's keep them for later. But we won't add them to the events array so they aren't displayed unless on the favorite view
                     let fetchRequest: NSFetchRequest = NSFetchRequest(entityName:"EventModel")
                     var error: NSError?
                     let fetchedResults = self.ManagedContext?.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]? //get those events
@@ -281,7 +294,11 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                     //if we did get the events then let's step through the array of them and for each have the ManagedContext delete them
                     if let events = fetchedResults {
                         for event in events{
-                            self.ManagedContext?.deleteObject(event)
+                            if (event as! EventModel).favorited == false{
+                                self.ManagedContext?.deleteObject(event)
+                            } else {
+                                self.ApplicationDelegate?.Favorites.append(event as! EventModel)
+                            }
                         }
                     }
                     
@@ -306,9 +323,9 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         var contact_email: String? = eventDict["contact_email"].stringValue
                         
                         //we need to take in longitude and lattitude to get city
-                        var longitude: String? = eventDict["longitude"].stringValue
-                        var lattitude: String? = eventDict["lattitude"].stringValue
-                        var locale: String = "" //To be added to JSON
+                        //var longitude: String? = eventDict["longitude"].stringValue //not using these
+                        //var lattitude: String? = eventDict["lattitude"].stringValue //not using these
+                        var locale: String = eventDict["locale"].stringValue
                         
                         //Event filtering flags
                         var women: Bool? = eventDict["women"].boolValue
@@ -319,6 +336,16 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         let entity =  NSEntityDescription.entityForName("EventModel", inManagedObjectContext: self.ManagedContext!)
                         
                         let event = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:self.ManagedContext!) as! EventModel
+                        
+                        //Now let's first take in the logo's url, and kick off the method to download it
+                        var base_url = "http://www.covize-pitch-alerts.herokuapp.com"
+                        let logo_url = eventDict["photo"].stringValue //get the path of the image from the event
+                        
+                        if logo_url == "/photos/original/missing.png"{
+                            //this is the default value for the photo but is not a real url TO-DO set the Logo as something by default
+                        } else {
+                            //This is where we would want to download the image
+                        }
                         
                         //set JSON values to the new EventModel
                         event.setValue(event_name, forKey: "event_name")
@@ -336,8 +363,8 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
                         event.setValue(contact_name, forKey: "contact_name")
                         event.setValue(contact_number, forKey: "contact_number")
                         event.setValue(contact_email, forKey: "contact_email")
-                        event.setValue(longitude, forKey: "longitude")
-                        event.setValue(lattitude, forKey: "lattitude")
+                        //event.setValue(longitude, forKey: "longitude")
+                        //event.setValue(lattitude, forKey: "lattitude")
                         event.setValue(locale, forKey: "locale")
                         event.setValue(women, forKey: "woman")
                         event.setValue(ethnic, forKey: "ethnic")
@@ -367,13 +394,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         ApplicationDelegate?.refreshEvents = false //set to false so that events don't keep being pulled
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
     //TO-DO
     func buildURL(url: String) -> String{
         //do a check here to determine what flags are set in company profile, i.e. preferLocation, preferIndustry, womanFounder, etc.
@@ -388,15 +408,21 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         
         //By default this intial app is the free version, so only 5 events will be pulled from the db at a time
         var limit = 5
-        var newURL = url + "?limit=\(limit)"
+        var st_index = 0
+        var newURL = url + "?starting_index=\(st_index)&ending_index=\(limit)"
         newURL += (female_founder == true) ? "&woman_founder=true" : ""
         newURL += (ethnic_founder == true) ? "&ethnic_founder=true" : ""
-        newURL += (prefer_local == true) ? "&local=true" : ""
-        //Not yet supported by API //newURL += (prefer_industry == true) ? "&woman_founder=true" : ""
-        newURL += (sort_event_start == true) ? "&sort_order=true": ""
+        newURL += (prefer_local == true) ? "&locale=\(companyProfile?.locale!)" : ""
+        newURL += (prefer_industry == true) ? "&industry=true" : ""
+        newURL += (sort_event_start == true) ? "&sort_order=event_start": ""
         newURL += (sort_registration_deadline == true) ? "&sort_order=registration_deadline" : ""
         
         return newURL
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     //This method is called before each transition between views

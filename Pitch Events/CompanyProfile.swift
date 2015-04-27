@@ -24,35 +24,11 @@ class CompanyProfile: NSManagedObject, Printable{
     @NSManaged var sort_registration_deadline: Bool
     @NSManaged var capital_goal: String?
     @NSManaged var fundraising: String?
+    @NSManaged var push_new_setting: Bool
+    @NSManaged var push_favorite_setting: Bool
     
     override var description: String {
         return "Company Name: \(company_name), Email: \(email)\n"
     }
     
-    /*
-    override init() {
-        self.femaleFounder = false
-        self.eMFounder = false
-        self.preferIndustry = false
-        self.preferLocal = false
-        
-    }
-
-    
-    init(name: String, email:String, companyName: String, industry: String, locale: String, femaleFounder: Bool, eMFounder: Bool, preferIndustry: Bool, preferLocal: Bool, capitalGoal: String, fundraising: String) {
-        self.name = name
-        self.email = email
-        self.companyName = companyName
-        self.industry = industry
-        self.locale = locale
-        self.femaleFounder = femaleFounder
-        self.eMFounder = eMFounder
-        self.preferIndustry = preferIndustry
-        self.preferLocal = preferLocal
-        self.capitalGoal = capitalGoal
-        self.fundraising = fundraising
-        
-    }
-    
-    */
 }

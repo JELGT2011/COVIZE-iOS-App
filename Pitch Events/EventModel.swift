@@ -32,6 +32,7 @@ class EventModel: NSManagedObject, Printable {
     @NSManaged var women: Bool
     @NSManaged var ethnic: String
     @NSManaged var industry: String
+    @NSManaged var logo: NSData
     
     override var description: String {
         return "Event Name: \(event_name), Organization: \(org_name)\n"
@@ -44,11 +45,12 @@ class EventModel: NSManagedObject, Printable {
     
     //ex. Dec 25, 2015
     func getRegistrationDeadline() ->String?{
+        var reg: String = registration_deadline
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
-        let regDeadline = dateFormatter.dateFromString(registration_deadline)
-        
-        dateFormatter.dateStyle = .MediumStyle //ex. Dec 25, 2015
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        let regDeadline = dateFormatter.dateFromString(reg)
+
+        dateFormatter.dateStyle = .ShortStyle //ex. 12/25/15
         
         let dateString = dateFormatter.stringFromDate(regDeadline!)
         
@@ -59,7 +61,7 @@ class EventModel: NSManagedObject, Printable {
     func getEventStart() ->String{
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         let startDate = dateFormatter.dateFromString(event_start)
         
         dateFormatter.dateStyle = .MediumStyle //ex. Dec 25, 2015
@@ -73,7 +75,7 @@ class EventModel: NSManagedObject, Printable {
     //ex. Dec 25, 2015 at 7:00 AM
     func getEventEnd() ->String{
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         let endDate = dateFormatter.dateFromString(event_end)
         
         dateFormatter.dateStyle = .MediumStyle //ex. Dec 25, 2015
@@ -88,7 +90,7 @@ class EventModel: NSManagedObject, Printable {
     //ex. 12/23/15 - 12/25/15
     func getEventDateRange() ->String{
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.xxxx"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         let startDate = dateFormatter.dateFromString(event_start)
         let endDate = dateFormatter.dateFromString(event_end)
         

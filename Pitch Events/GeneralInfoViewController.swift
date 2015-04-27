@@ -26,6 +26,8 @@ class GeneralInfoViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
+        
         //make sure the error message is initially hidden and set to empty string
         ErrorLabel.hidden = true
         ErrorLabel.text? = ""

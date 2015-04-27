@@ -12,6 +12,7 @@ import CoreData
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var filterTableView: UITableView!
+    @IBOutlet weak var CompanyName: UILabel!
     @IBOutlet weak var Industry: UILabel!
     @IBOutlet weak var CapitalGoal: UILabel!
     @IBOutlet weak var TableView: UITableView!
@@ -25,10 +26,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     ]
     
     let filters = [
-        ("Local Events"),
-        ("Industry Specific Events"),
-        ("Ethnic/Minority Founder Targeted Events"),
-        ("Female Founder Targeted Events")
+        ("Locale Specific"),
+        ("Industry Specific"),
+        ("Minority Founder Targeted"),
+        ("Female Founder Targeted")
     ]
 
     var sortSelectedCell:NSIndexPath = NSIndexPath()
@@ -110,8 +111,15 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
+        header.contentView.backgroundColor = HextoColor.uicolorFromHex(0x92B3A9)
+        header.textLabel.textColor = UIColor.whiteColor() //make the text white
+        
+    }
+    
     //On save we need to update the CompanyProfile attributes and also tell the eventTableView that it needs to fetch new events
-    @IBAction func saveFilters(sender: AnyObject) {
+    /*@IBAction func saveFilters(sender: AnyObject) {
         //switchArr (local,industry,ethnic,femal)
         companyProfile?.prefer_local = (switchArr?[0].on)!
         companyProfile?.prefer_industry = (switchArr?[1].on)!
@@ -132,7 +140,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ApplicationDelegate?.refreshEvents = true
         
         self.performSegueWithIdentifier("saveFiltersSegue", sender: self)
-    }
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,6 +148,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ApplicationDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         companyProfile = ApplicationDelegate?.companyProfile
         
+        //set nave bar colors
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        navigationController?.navigationBar.barTintColor = HextoColor.uicolorFromHex(0x13342A)
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
         
         //Initialize the toggles and set their values based on the company profile (local,industry,ethnic,female)
         var flagSwitch = UISwitch(frame: CGRectZero) as UISwitch
@@ -159,9 +173,11 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switchArr?.append(flagSwitch)
         
         //set the Company Profile data
-        self.navigationItem.title = companyProfile?.company_name
-        self.Industry.text = "Industry: \(companyProfile?.industry)"
-        self.CapitalGoal.text = "Capital Goal: \(companyProfile?.capital_goal)"
+        self.CompanyName.text = companyProfile?.company_name
+        var ind:String = (companyProfile?.industry)!
+        self.Industry.text = "Industry: \(ind)"
+        var cap:String = (companyProfile?.capital_goal)!
+        self.CapitalGoal.text = "Capital Goal: \(cap)"
         
         //set the sorting settings from the company profile
         self.sort_event_start = companyProfile?.sort_event_start
@@ -176,8 +192,25 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        //when we leave the screen save the changes
+        //switchArr (local,industry,ethnic,femal)
+        companyProfile?.prefer_local = (switchArr?[0].on)!
+        companyProfile?.prefer_industry = (switchArr?[1].on)!
+        companyProfile?.ethnic_founder = (switchArr?[2].on)!
+        companyProfile?.female_founder = (switchArr?[3].on)!
+        
+        //set the sorting flags
+        var sortSelected = self.TableView.cellForRowAtIndexPath(sortSelectedCell)
+        if(sortSelected?.textLabel?.text == "Event Date"){
+            companyProfile?.sort_event_start = true
+            companyProfile?.sort_registration_deadline = false
+        } else{
+            companyProfile?.sort_event_start = false
+            companyProfile?.sort_registration_deadline = true
+        }
+        
+        //We have most likely changed the filters, let's pull new events
+        ApplicationDelegate?.refreshEvents = true
     }
     
 

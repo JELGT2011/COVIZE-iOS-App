@@ -10,6 +10,9 @@
 		483D04B81A912673003B8521 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D04B71A912673003B8521 /* EventModel.swift */; };
 		483D04BA1A91286C003B8521 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D04B91A91286C003B8521 /* SwiftyJSON.swift */; };
 		E930E1B11ACB9E860094E500 /* GeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930E1B01ACB9E860094E500 /* GeneralInfoViewController.swift */; };
+		E94C22521AE7B9B10041E2CE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C22511AE7B9B10041E2CE /* SettingsViewController.swift */; };
+		E951ECA81AE74201006B0A53 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E951ECA71AE74201006B0A53 /* SupportViewController.swift */; };
+		E951ECAA1AE74350006B0A53 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E951ECA91AE74350006B0A53 /* ContactViewController.swift */; };
 		E964FDFA1AE209FA00112AE8 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E964FDF91AE209FA00112AE8 /* Alamofire.swift */; };
 		E964FDFC1AE44D3300112AE8 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E964FDFB1AE44D3300112AE8 /* iAd.framework */; };
 		E964FDFE1AE479A700112AE8 /* HextoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E964FDFD1AE479A700112AE8 /* HextoColor.swift */; };
@@ -28,6 +31,7 @@
 		E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618C1A910EA2005953CF /* EventTableViewController.swift */; };
 		E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618E1A910EEE005953CF /* FilterViewController.swift */; };
 		E9E525341AB21402007CACE2 /* DetailedEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */; };
+		E9E957201AE71514005B9E77 /* MultipleInputPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E9571F1AE71514005B9E77 /* MultipleInputPickerController.swift */; };
 		E9F411DD1ABF62C500224E44 /* CompanyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F411DC1ABF62C500224E44 /* CompanyProfile.swift */; };
 		E9F69D141A9BD8270066CC4E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F69D131A9BD8270066CC4E /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +50,9 @@
 		483D04B71A912673003B8521 /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		483D04B91A91286C003B8521 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		E930E1B01ACB9E860094E500 /* GeneralInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoViewController.swift; sourceTree = "<group>"; };
+		E94C22511AE7B9B10041E2CE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E951ECA71AE74201006B0A53 /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		E951ECA91AE74350006B0A53 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		E964FDF91AE209FA00112AE8 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		E964FDFB1AE44D3300112AE8 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		E964FDFD1AE479A700112AE8 /* HextoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HextoColor.swift; sourceTree = "<group>"; };
@@ -70,6 +77,7 @@
 		E9D1618C1A910EA2005953CF /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		E9D1618E1A910EEE005953CF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEventViewController.swift; sourceTree = "<group>"; };
+		E9E9571F1AE71514005B9E77 /* MultipleInputPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleInputPickerController.swift; sourceTree = "<group>"; };
 		E9F411DC1ABF62C500224E44 /* CompanyProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyProfile.swift; sourceTree = "<group>"; };
 		E9F69D131A9BD8270066CC4E /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +108,9 @@
 				E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */,
 				E97A70351ACB438900BE6478 /* MenuViewController.swift */,
 				E9D1618E1A910EEE005953CF /* FilterViewController.swift */,
+				E951ECA71AE74201006B0A53 /* SupportViewController.swift */,
+				E951ECA91AE74350006B0A53 /* ContactViewController.swift */,
+				E94C22511AE7B9B10041E2CE /* SettingsViewController.swift */,
 			);
 			name = MainViewControllers;
 			sourceTree = "<group>";
@@ -185,6 +196,7 @@
 				E964FDFF1AE4AEA300112AE8 /* EventTableCell.swift */,
 				E964FDFD1AE479A700112AE8 /* HextoColor.swift */,
 				E9C099FA1ADB0C9F0009AA47 /* InputPickerController.swift */,
+				E9E9571F1AE71514005B9E77 /* MultipleInputPickerController.swift */,
 			);
 			name = "Application Classes";
 			sourceTree = "<group>";
@@ -302,22 +314,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				E964FDFE1AE479A700112AE8 /* HextoColor.swift in Sources */,
+				E9E957201AE71514005B9E77 /* MultipleInputPickerController.swift in Sources */,
 				E964FE001AE4AEA400112AE8 /* EventTableCell.swift in Sources */,
 				E9F69D141A9BD8270066CC4E /* SplashViewController.swift in Sources */,
 				E9F411DD1ABF62C500224E44 /* CompanyProfile.swift in Sources */,
 				E9D161661A910492005953CF /* AppDelegate.swift in Sources */,
 				E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */,
 				E9C099F51ACF2F820009AA47 /* CompanyInfoViewController.swift in Sources */,
+				E951ECAA1AE74350006B0A53 /* ContactViewController.swift in Sources */,
 				E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */,
 				483D04BA1A91286C003B8521 /* SwiftyJSON.swift in Sources */,
 				E9C099FB1ADB0C9F0009AA47 /* InputPickerController.swift in Sources */,
 				E9C099F71ACF2F9B0009AA47 /* InitialSettingsViewController.swift in Sources */,
+				E94C22521AE7B9B10041E2CE /* SettingsViewController.swift in Sources */,
 				E930E1B11ACB9E860094E500 /* GeneralInfoViewController.swift in Sources */,
 				E964FDFA1AE209FA00112AE8 /* Alamofire.swift in Sources */,
 				E97A70361ACB438900BE6478 /* MenuViewController.swift in Sources */,
 				483D04B81A912673003B8521 /* EventModel.swift in Sources */,
 				E97A70341ACB375E00BE6478 /* SWRevealViewController.m in Sources */,
 				E9D161691A910492005953CF /* Pitch_Events.xcdatamodeld in Sources */,
+				E951ECA81AE74201006B0A53 /* SupportViewController.swift in Sources */,
 				E9E525341AB21402007CACE2 /* DetailedEventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,11 +463,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Pitch Events/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pitch Events/Pitch Events-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -463,10 +481,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Pitch Events/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pitch Events/Pitch Events-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

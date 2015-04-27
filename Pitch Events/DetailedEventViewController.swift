@@ -86,8 +86,9 @@ class DetailedEventViewController: UIViewController {
         super.viewDidLoad()
         
         //change color of nav bar
-        //navigationController?.navigationBar.barTintColor = HextoColor.uicolorFromHex(0xADDDCF)
-        //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = .whiteColor()
+        self.navigationItem.leftBarButtonItem?.tintColor = .whiteColor()
+        self.navigationController?.navigationItem.leftBarButtonItem?.tintColor = .whiteColor()
         
         appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         
@@ -107,13 +108,20 @@ class DetailedEventViewController: UIViewController {
         }
         
         // take the event's data and set the labels
-        //EventLogo
-        self.navigationItem.title = currEvent?.event_name
+        self.navigationItem.title = "Pitch Alerts Lite"
         EventName.text = currEvent?.event_name
         OrgName.text = currEvent?.org_name
-        EventAddress.text = currEvent?.getEventAddress() //check get Location to make sure it outputs correct
+        EventAddress.text = currEvent?.getLocale() //check get Location to make sure it outputs correct
         EventDates.text = currEvent?.getEventDateRange() //create getEvent Start that does date range then times
         RegDeadline.text = "Register by: " + (currEvent?.getRegistrationDeadline())! //sets the registration deadline to the label
+        
+        //Haven't yet supported downloading image from db default to place holder
+        /*if let image = currEvent?.logo{
+            if(UIImage(data: image) != nil){
+                EventLogo.image = UIImage(data: image)
+            }
+        }*/
+        EventLogo.image = UIImage(named: "pitchAlertsBaloon")
         
         checkContactInfo(currEvent?.contact_name, contactEmail: currEvent?.contact_email, contactNumber: currEvent?.contact_number) //see if any contact info was giver otherwise hide the elements
     }
