@@ -64,14 +64,14 @@
 		E9C099F41ACF2F820009AA47 /* CompanyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyInfoViewController.swift; sourceTree = "<group>"; };
 		E9C099F61ACF2F9B0009AA47 /* InitialSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialSettingsViewController.swift; sourceTree = "<group>"; };
 		E9C099FA1ADB0C9F0009AA47 /* InputPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPickerController.swift; sourceTree = "<group>"; };
-		E9D161601A910492005953CF /* Pitch Alerts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Alerts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D161601A910492005953CF /* Pitch Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D161641A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D161651A910492005953CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9D161681A910492005953CF /* Pitch_Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pitch_Events.xcdatamodel; sourceTree = "<group>"; };
 		E9D1616D1A910492005953CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9D1616F1A910492005953CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9D161721A910492005953CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E9D161781A910492005953CF /* Pitch AlertsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch AlertsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D161781A910492005953CF /* Pitch EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch EventsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D1617D1A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_EventsTests.swift; sourceTree = "<group>"; };
 		E9D1618C1A910EA2005953CF /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
@@ -128,8 +128,8 @@
 		E9D161611A910492005953CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E9D161601A910492005953CF /* Pitch Alerts.app */,
-				E9D161781A910492005953CF /* Pitch AlertsTests.xctest */,
+				E9D161601A910492005953CF /* Pitch Events.app */,
+				E9D161781A910492005953CF /* Pitch EventsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,9 +215,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E9D1615F1A910492005953CF /* Pitch Alerts */ = {
+		E9D1615F1A910492005953CF /* Pitch Events */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Alerts" */;
+			buildConfigurationList = E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Events" */;
 			buildPhases = (
 				E9D1615C1A910492005953CF /* Sources */,
 				E9D1615D1A910492005953CF /* Frameworks */,
@@ -227,14 +227,14 @@
 			);
 			dependencies = (
 			);
-			name = "Pitch Alerts";
+			name = "Pitch Events";
 			productName = "Pitch Events";
-			productReference = E9D161601A910492005953CF /* Pitch Alerts.app */;
+			productReference = E9D161601A910492005953CF /* Pitch Events.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E9D161771A910492005953CF /* Pitch AlertsTests */ = {
+		E9D161771A910492005953CF /* Pitch EventsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch AlertsTests" */;
+			buildConfigurationList = E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch EventsTests" */;
 			buildPhases = (
 				E9D161741A910492005953CF /* Sources */,
 				E9D161751A910492005953CF /* Frameworks */,
@@ -245,9 +245,9 @@
 			dependencies = (
 				E9D1617A1A910492005953CF /* PBXTargetDependency */,
 			);
-			name = "Pitch AlertsTests";
+			name = "Pitch EventsTests";
 			productName = "Pitch EventsTests";
-			productReference = E9D161781A910492005953CF /* Pitch AlertsTests.xctest */;
+			productReference = E9D161781A910492005953CF /* Pitch EventsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -269,7 +269,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Alerts" */;
+			buildConfigurationList = E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Events" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -282,8 +282,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E9D1615F1A910492005953CF /* Pitch Alerts */,
-				E9D161771A910492005953CF /* Pitch AlertsTests */,
+				E9D1615F1A910492005953CF /* Pitch Events */,
+				E9D161771A910492005953CF /* Pitch EventsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -351,7 +351,7 @@
 /* Begin PBXTargetDependency section */
 		E9D1617A1A910492005953CF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E9D1615F1A910492005953CF /* Pitch Alerts */;
+			target = E9D1615F1A910492005953CF /* Pitch Events */;
 			targetProxy = E9D161791A910492005953CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -465,7 +465,7 @@
 				INFOPLIST_FILE = "Pitch Events/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Pitch Alerts";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pitch Events/Pitch Events-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -483,7 +483,7 @@
 				INFOPLIST_FILE = "Pitch Events/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Pitch Alerts";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pitch Events/Pitch Events-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -504,7 +504,7 @@
 				);
 				INFOPLIST_FILE = "Pitch EventsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "Pitch AlertsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pitch Events.app/Pitch Events";
 			};
 			name = Debug;
@@ -519,7 +519,7 @@
 				);
 				INFOPLIST_FILE = "Pitch EventsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "Pitch AlertsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pitch Events.app/Pitch Events";
 			};
 			name = Release;
@@ -527,7 +527,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Alerts" */ = {
+		E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Events" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9D161801A910492005953CF /* Debug */,
@@ -536,7 +536,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Alerts" */ = {
+		E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Events" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9D161831A910492005953CF /* Debug */,
@@ -545,7 +545,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch AlertsTests" */ = {
+		E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch EventsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9D161861A910492005953CF /* Debug */,
