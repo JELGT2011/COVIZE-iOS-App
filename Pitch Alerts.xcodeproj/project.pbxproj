@@ -27,7 +27,7 @@
 		E9D1616E1A910492005953CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D1616C1A910492005953CF /* Main.storyboard */; };
 		E9D161701A910492005953CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D1616F1A910492005953CF /* Images.xcassets */; };
 		E9D161731A910492005953CF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D161711A910492005953CF /* LaunchScreen.xib */; };
-		E9D1617F1A910492005953CF /* Pitch_EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */; };
+		E9D1617F1A910492005953CF /* Pitch_AlertsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1617E1A910492005953CF /* Pitch_AlertsTests.swift */; };
 		E9D1618D1A910EA2005953CF /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618C1A910EA2005953CF /* EventTableViewController.swift */; };
 		E9D1618F1A910EEE005953CF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1618E1A910EEE005953CF /* FilterViewController.swift */; };
 		E9E525341AB21402007CACE2 /* DetailedEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */; };
@@ -73,7 +73,7 @@
 		E9D161721A910492005953CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E9D161781A910492005953CF /* Pitch EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch EventsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D1617D1A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_EventsTests.swift; sourceTree = "<group>"; };
+		E9D1617E1A910492005953CF /* Pitch_AlertsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_AlertsTests.swift; sourceTree = "<group>"; };
 		E9D1618C1A910EA2005953CF /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		E9D1618E1A910EEE005953CF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		E9E525331AB21402007CACE2 /* DetailedEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEventViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		E9D1617B1A910492005953CF /* Pitch EventsTests */ = {
 			isa = PBXGroup;
 			children = (
-				E9D1617E1A910492005953CF /* Pitch_EventsTests.swift */,
+				E9D1617E1A910492005953CF /* Pitch_AlertsTests.swift */,
 				E9D1617C1A910492005953CF /* Supporting Files */,
 			);
 			path = "Pitch EventsTests";
@@ -215,9 +215,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E9D1615F1A910492005953CF /* Pitch Events */ = {
+		E9D1615F1A910492005953CF /* Pitch Alerts */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Events" */;
+			buildConfigurationList = E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Alerts" */;
 			buildPhases = (
 				E9D1615C1A910492005953CF /* Sources */,
 				E9D1615D1A910492005953CF /* Frameworks */,
@@ -227,14 +227,14 @@
 			);
 			dependencies = (
 			);
-			name = "Pitch Events";
+			name = "Pitch Alerts";
 			productName = "Pitch Events";
 			productReference = E9D161601A910492005953CF /* Pitch Events.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E9D161771A910492005953CF /* Pitch EventsTests */ = {
+		E9D161771A910492005953CF /* Pitch AlertsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch EventsTests" */;
+			buildConfigurationList = E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch AlertsTests" */;
 			buildPhases = (
 				E9D161741A910492005953CF /* Sources */,
 				E9D161751A910492005953CF /* Frameworks */,
@@ -245,7 +245,7 @@
 			dependencies = (
 				E9D1617A1A910492005953CF /* PBXTargetDependency */,
 			);
-			name = "Pitch EventsTests";
+			name = "Pitch AlertsTests";
 			productName = "Pitch EventsTests";
 			productReference = E9D161781A910492005953CF /* Pitch EventsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -269,7 +269,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Events" */;
+			buildConfigurationList = E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Alerts" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -282,8 +282,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E9D1615F1A910492005953CF /* Pitch Events */,
-				E9D161771A910492005953CF /* Pitch EventsTests */,
+				E9D1615F1A910492005953CF /* Pitch Alerts */,
+				E9D161771A910492005953CF /* Pitch AlertsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -342,7 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9D1617F1A910492005953CF /* Pitch_EventsTests.swift in Sources */,
+				E9D1617F1A910492005953CF /* Pitch_AlertsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +351,7 @@
 /* Begin PBXTargetDependency section */
 		E9D1617A1A910492005953CF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E9D1615F1A910492005953CF /* Pitch Events */;
+			target = E9D1615F1A910492005953CF /* Pitch Alerts */;
 			targetProxy = E9D161791A910492005953CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -527,7 +527,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Events" */ = {
+		E9D1615B1A910492005953CF /* Build configuration list for PBXProject "Pitch Alerts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9D161801A910492005953CF /* Debug */,
@@ -536,7 +536,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Events" */ = {
+		E9D161821A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch Alerts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9D161831A910492005953CF /* Debug */,
@@ -545,7 +545,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch EventsTests" */ = {
+		E9D161851A910492005953CF /* Build configuration list for PBXNativeTarget "Pitch AlertsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9D161861A910492005953CF /* Debug */,
