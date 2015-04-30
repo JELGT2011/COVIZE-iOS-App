@@ -31,4 +31,11 @@ class CompanyProfile: NSManagedObject, Printable{
         return "Company Name: \(company_name), Email: \(email)\n"
     }
     
+        
+    func getURLLocale() -> String{
+        var loc = locale!.stringByReplacingOccurrencesOfString(" ", withString: "")
+        return loc
+    }
+
+    
 }

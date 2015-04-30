@@ -64,14 +64,14 @@
 		E9C099F41ACF2F820009AA47 /* CompanyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyInfoViewController.swift; sourceTree = "<group>"; };
 		E9C099F61ACF2F9B0009AA47 /* InitialSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialSettingsViewController.swift; sourceTree = "<group>"; };
 		E9C099FA1ADB0C9F0009AA47 /* InputPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPickerController.swift; sourceTree = "<group>"; };
-		E9D161601A910492005953CF /* Pitch Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D161601A910492005953CF /* Pitch Alerts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Alerts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D161641A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D161651A910492005953CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9D161681A910492005953CF /* Pitch_Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pitch_Events.xcdatamodel; sourceTree = "<group>"; };
 		E9D1616D1A910492005953CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9D1616F1A910492005953CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9D161721A910492005953CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E9D161781A910492005953CF /* Pitch EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch EventsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D161781A910492005953CF /* Pitch AlertsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch AlertsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D1617D1A910492005953CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D1617E1A910492005953CF /* Pitch_AlertsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_AlertsTests.swift; sourceTree = "<group>"; };
 		E9D1618C1A910EA2005953CF /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
@@ -128,8 +128,8 @@
 		E9D161611A910492005953CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E9D161601A910492005953CF /* Pitch Events.app */,
-				E9D161781A910492005953CF /* Pitch EventsTests.xctest */,
+				E9D161601A910492005953CF /* Pitch Alerts.app */,
+				E9D161781A910492005953CF /* Pitch AlertsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,7 +229,7 @@
 			);
 			name = "Pitch Alerts";
 			productName = "Pitch Events";
-			productReference = E9D161601A910492005953CF /* Pitch Events.app */;
+			productReference = E9D161601A910492005953CF /* Pitch Alerts.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E9D161771A910492005953CF /* Pitch AlertsTests */ = {
@@ -247,7 +247,7 @@
 			);
 			name = "Pitch AlertsTests";
 			productName = "Pitch EventsTests";
-			productReference = E9D161781A910492005953CF /* Pitch EventsTests.xctest */;
+			productReference = E9D161781A910492005953CF /* Pitch AlertsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */

@@ -412,7 +412,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, NSURLCo
         var newURL = url + "?starting_index=\(st_index)&ending_index=\(limit)"
         newURL += (female_founder == true) ? "&woman_founder=true" : ""
         newURL += (ethnic_founder == true) ? "&ethnic_founder=true" : ""
-        newURL += (prefer_local == true) ? "&locale=\(companyProfile?.locale!)" : ""
+        newURL += (prefer_local == true) ? "&locale=\((companyProfile?.getURLLocale())!)" : ""
         newURL += (prefer_industry == true) ? "&industry=true" : ""
         newURL += (sort_event_start == true) ? "&sort_order=event_start": ""
         newURL += (sort_registration_deadline == true) ? "&sort_order=registration_deadline" : ""

@@ -9,7 +9,7 @@
         <!--Menu View Controller-->
         <scene sceneID="ZQ6-to-rcY">
             <objects>
-                <tableViewController id="ol9-hE-fxO" customClass="MenuViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ol9-hE-fxO" customClass="MenuViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" id="WPJ-gQ-g8Y">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,8 +22,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ecn-r2-bg6" id="wWD-wE-kFk">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Company Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zm-4d-cL7">
-                                                    <rect key="frame" x="60" y="28" width="95" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zm-4d-cL7">
+                                                    <rect key="frame" x="60" y="28" width="128" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -84,8 +84,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PxN-Yn-mCD" id="7I7-3b-9cl">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LM-Bk-2PD">
-                                                    <rect key="frame" x="60" y="28" width="36" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LM-Bk-2PD">
+                                                    <rect key="frame" x="60" y="28" width="62" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -146,8 +146,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oha-D8-kdU" id="Zf5-gS-Eof">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Write a Review" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpU-6P-uYM">
-                                                    <rect key="frame" x="60" y="28" width="87" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a Review" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpU-6P-uYM">
+                                                    <rect key="frame" x="60" y="28" width="114" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -186,7 +186,7 @@
         <!--Events TableView Controller-->
         <scene sceneID="geE-El-ZvY">
             <objects>
-                <viewController storyboardIdentifier="EventTableViewController" title="Events TableView Controller" automaticallyAdjustsScrollViewInsets="NO" id="kvl-9M-vZQ" customClass="EventTableViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventTableViewController" title="Events TableView Controller" automaticallyAdjustsScrollViewInsets="NO" id="kvl-9M-vZQ" customClass="EventTableViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JMf-Xi-cmy"/>
                         <viewControllerLayoutGuide type="bottom" id="bDh-Ms-76Z"/>
@@ -262,10 +262,10 @@
                                 </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="182" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eOA-5V-e3r">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="event" rowHeight="187" id="ckj-yi-Gbq" customClass="EventTableCell" customModule="Pitch_Events" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="event" rowHeight="187" id="ckj-yi-Gbq" customClass="EventTableCell" customModule="Pitch_Alerts" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ckj-yi-Gbq" id="U1S-mc-vHE">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -731,12 +731,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQQ-Oa-LYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3279" y="724.5"/>
+            <point key="canvasLocation" x="3279" y="724"/>
         </scene>
         <!--Filters-->
         <scene sceneID="KWJ-ye-GSP">
             <objects>
-                <viewController title="Filters" automaticallyAdjustsScrollViewInsets="NO" id="RvQ-uj-qSi" customClass="FilterViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Filters" automaticallyAdjustsScrollViewInsets="NO" id="RvQ-uj-qSi" customClass="FilterViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3du-ys-cBQ"/>
                         <viewControllerLayoutGuide type="bottom" id="kHl-Fx-21t"/>
@@ -961,7 +961,7 @@
         <!--Pitch Alerts Lite-->
         <scene sceneID="Gae-ti-RfB">
             <objects>
-                <viewController id="ahW-yO-D3t" customClass="SettingsViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ahW-yO-D3t" customClass="SettingsViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gHO-8L-2rP"/>
                         <viewControllerLayoutGuide type="bottom" id="F0Z-qw-1u1"/>
@@ -1161,29 +1161,29 @@
                                         <exclude reference="df0-Bn-Lf5"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="DfX-DV-j9V"/>
-                                        <exclude reference="Q1A-Fr-btS"/>
-                                        <exclude reference="wRp-7d-SfS"/>
-                                        <exclude reference="R3O-kA-rvr"/>
-                                        <exclude reference="gI5-WM-UIz"/>
-                                        <exclude reference="OnG-1U-bhY"/>
-                                        <exclude reference="SjX-NY-b4u"/>
-                                        <exclude reference="YK4-yq-si9"/>
-                                        <exclude reference="IiW-SD-3Fx"/>
-                                        <exclude reference="t6T-yQ-ZGL"/>
-                                        <exclude reference="Jv0-tS-hGw"/>
-                                        <exclude reference="W8l-3h-VOd"/>
-                                        <exclude reference="ovF-je-mKd"/>
                                         <exclude reference="4MD-9D-6ay"/>
                                         <exclude reference="HsV-bD-GoA"/>
                                         <exclude reference="dqA-Qn-Vky"/>
+                                        <exclude reference="tVd-2C-EAF"/>
+                                        <exclude reference="IiW-SD-3Fx"/>
+                                        <exclude reference="t6T-yQ-ZGL"/>
+                                        <exclude reference="R3O-kA-rvr"/>
+                                        <exclude reference="gI5-WM-UIz"/>
                                         <exclude reference="L0b-c7-1mO"/>
                                         <exclude reference="qjV-cO-Frh"/>
                                         <exclude reference="C7g-c3-EH4"/>
                                         <exclude reference="KaT-2z-kD7"/>
                                         <exclude reference="UD6-BG-eDP"/>
                                         <exclude reference="vKW-6B-fFf"/>
-                                        <exclude reference="tVd-2C-EAF"/>
+                                        <exclude reference="OnG-1U-bhY"/>
+                                        <exclude reference="SjX-NY-b4u"/>
+                                        <exclude reference="YK4-yq-si9"/>
+                                        <exclude reference="Jv0-tS-hGw"/>
+                                        <exclude reference="W8l-3h-VOd"/>
+                                        <exclude reference="ovF-je-mKd"/>
+                                        <exclude reference="DfX-DV-j9V"/>
+                                        <exclude reference="Q1A-Fr-btS"/>
+                                        <exclude reference="wRp-7d-SfS"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -1199,29 +1199,29 @@
                                         <include reference="df0-Bn-Lf5"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="DfX-DV-j9V"/>
-                                        <include reference="Q1A-Fr-btS"/>
-                                        <include reference="wRp-7d-SfS"/>
-                                        <include reference="R3O-kA-rvr"/>
-                                        <include reference="gI5-WM-UIz"/>
-                                        <include reference="OnG-1U-bhY"/>
-                                        <include reference="SjX-NY-b4u"/>
-                                        <include reference="YK4-yq-si9"/>
-                                        <include reference="IiW-SD-3Fx"/>
-                                        <include reference="t6T-yQ-ZGL"/>
-                                        <include reference="Jv0-tS-hGw"/>
-                                        <include reference="W8l-3h-VOd"/>
-                                        <include reference="ovF-je-mKd"/>
                                         <include reference="4MD-9D-6ay"/>
                                         <include reference="HsV-bD-GoA"/>
                                         <include reference="dqA-Qn-Vky"/>
+                                        <include reference="tVd-2C-EAF"/>
+                                        <include reference="IiW-SD-3Fx"/>
+                                        <include reference="t6T-yQ-ZGL"/>
+                                        <include reference="R3O-kA-rvr"/>
+                                        <include reference="gI5-WM-UIz"/>
                                         <include reference="L0b-c7-1mO"/>
                                         <include reference="qjV-cO-Frh"/>
                                         <include reference="C7g-c3-EH4"/>
                                         <include reference="KaT-2z-kD7"/>
                                         <include reference="UD6-BG-eDP"/>
                                         <include reference="vKW-6B-fFf"/>
-                                        <include reference="tVd-2C-EAF"/>
+                                        <include reference="OnG-1U-bhY"/>
+                                        <include reference="SjX-NY-b4u"/>
+                                        <include reference="YK4-yq-si9"/>
+                                        <include reference="Jv0-tS-hGw"/>
+                                        <include reference="W8l-3h-VOd"/>
+                                        <include reference="ovF-je-mKd"/>
+                                        <include reference="DfX-DV-j9V"/>
+                                        <include reference="Q1A-Fr-btS"/>
+                                        <include reference="wRp-7d-SfS"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1290,7 +1290,7 @@
         <!--Pitch Alerts Lite-->
         <scene sceneID="KXZ-KF-cHo">
             <objects>
-                <viewController id="kN6-XT-nc7" customClass="SupportViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kN6-XT-nc7" customClass="SupportViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RvK-Dd-lrU"/>
                         <viewControllerLayoutGuide type="bottom" id="Ssz-MP-HNA"/>
@@ -1564,7 +1564,7 @@
         <!--Contact Us-->
         <scene sceneID="kqL-WD-eNx">
             <objects>
-                <viewController id="TvW-5N-4ty" customClass="ContactViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TvW-5N-4ty" customClass="ContactViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PCM-XU-PHC"/>
                         <viewControllerLayoutGuide type="bottom" id="1hP-RK-m00"/>
@@ -1821,7 +1821,7 @@
         <!--DetailedEventsView-->
         <scene sceneID="9WP-nA-Smz">
             <objects>
-                <viewController title="DetailedEventsView" id="tV5-dK-V9k" customClass="DetailedEventViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DetailedEventsView" id="tV5-dK-V9k" customClass="DetailedEventViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L6D-At-UR0"/>
                         <viewControllerLayoutGuide type="bottom" id="mk5-yk-dnl"/>
@@ -2224,7 +2224,7 @@ Atlanta, GA 30332</string>
         <!--Splash-->
         <scene sceneID="QiF-Jy-lvj">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" title="Splash" id="Am4-2F-X47" customClass="SplashViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Splash" id="Am4-2F-X47" customClass="SplashViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="ikB-ey-wF8" kind="show" identifier="GeneralInfoViewSegue" id="zLY-1m-aj2"/>
                         <segue destination="BwB-Sh-BiS" kind="show" identifier="EventTableViewSegue" id="Fj8-ir-xyn"/>
@@ -2237,7 +2237,7 @@ Atlanta, GA 30332</string>
         <!--General Info-->
         <scene sceneID="9ll-N3-jQT">
             <objects>
-                <viewController storyboardIdentifier="GeneralInfoVIew" title="General Info" id="ikB-ey-wF8" customClass="GeneralInfoViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GeneralInfoVIew" title="General Info" id="ikB-ey-wF8" customClass="GeneralInfoViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fpY-Da-rJM"/>
                         <viewControllerLayoutGuide type="bottom" id="ynz-Wg-z3z"/>
@@ -2459,26 +2459,26 @@ Atlanta, GA 30332</string>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="6MV-uc-7am"/>
-                                        <exclude reference="6Sl-Nf-eHz"/>
-                                        <exclude reference="NUY-ro-hrq"/>
-                                        <exclude reference="vGt-u4-2LP"/>
                                         <exclude reference="Oqp-Zb-w3p"/>
                                         <exclude reference="xRo-m0-OOh"/>
+                                        <exclude reference="Sg1-3Y-hv6"/>
                                         <exclude reference="FP6-2v-oOO"/>
                                         <exclude reference="kXG-LY-En2"/>
                                         <exclude reference="qar-PO-HsF"/>
-                                        <exclude reference="Sg1-3Y-hv6"/>
                                         <exclude reference="dAR-bq-abr"/>
                                         <exclude reference="f8Y-40-io4"/>
                                         <exclude reference="GUZ-6Q-y7R"/>
                                         <exclude reference="cLu-dY-pwb"/>
+                                        <exclude reference="H4s-Xw-hwQ"/>
                                         <exclude reference="F8j-o8-b2Y"/>
                                         <exclude reference="UqQ-Fx-Vuc"/>
                                         <exclude reference="mwy-rI-5Fk"/>
-                                        <exclude reference="H4s-Xw-hwQ"/>
                                         <exclude reference="f2k-bj-W3X"/>
                                         <exclude reference="gop-BP-owo"/>
                                         <exclude reference="zLR-sD-bPC"/>
+                                        <exclude reference="6Sl-Nf-eHz"/>
+                                        <exclude reference="NUY-ro-hrq"/>
+                                        <exclude reference="vGt-u4-2LP"/>
                                         <exclude reference="EO5-9G-Ghu"/>
                                         <exclude reference="FT5-kO-lqc"/>
                                         <exclude reference="MqA-hU-lb8"/>
@@ -2500,26 +2500,26 @@ Atlanta, GA 30332</string>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="6MV-uc-7am"/>
-                                        <include reference="6Sl-Nf-eHz"/>
-                                        <include reference="NUY-ro-hrq"/>
-                                        <include reference="vGt-u4-2LP"/>
                                         <include reference="Oqp-Zb-w3p"/>
                                         <include reference="xRo-m0-OOh"/>
+                                        <include reference="Sg1-3Y-hv6"/>
                                         <include reference="FP6-2v-oOO"/>
                                         <include reference="kXG-LY-En2"/>
                                         <include reference="qar-PO-HsF"/>
-                                        <include reference="Sg1-3Y-hv6"/>
                                         <include reference="dAR-bq-abr"/>
                                         <include reference="f8Y-40-io4"/>
                                         <include reference="GUZ-6Q-y7R"/>
                                         <include reference="cLu-dY-pwb"/>
+                                        <include reference="H4s-Xw-hwQ"/>
                                         <include reference="F8j-o8-b2Y"/>
                                         <include reference="UqQ-Fx-Vuc"/>
                                         <include reference="mwy-rI-5Fk"/>
-                                        <include reference="H4s-Xw-hwQ"/>
                                         <include reference="f2k-bj-W3X"/>
                                         <exclude reference="gop-BP-owo"/>
                                         <include reference="zLR-sD-bPC"/>
+                                        <include reference="6Sl-Nf-eHz"/>
+                                        <include reference="NUY-ro-hrq"/>
+                                        <include reference="vGt-u4-2LP"/>
                                         <include reference="EO5-9G-Ghu"/>
                                         <include reference="FT5-kO-lqc"/>
                                         <include reference="MqA-hU-lb8"/>
@@ -2610,7 +2610,7 @@ Atlanta, GA 30332</string>
         <!--Company Info-->
         <scene sceneID="iIu-E3-FTf">
             <objects>
-                <viewController storyboardIdentifier="CompanyInfoView" title="Company Info" id="dlc-ts-oW9" customClass="CompanyInfoViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompanyInfoView" title="Company Info" id="dlc-ts-oW9" customClass="CompanyInfoViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cy2-3C-ZMt"/>
                         <viewControllerLayoutGuide type="bottom" id="pTA-Ig-rtG"/>
@@ -2852,14 +2852,6 @@ Atlanta, GA 30332</string>
                                     <mask key="constraints">
                                         <exclude reference="ACv-0o-RFZ"/>
                                         <exclude reference="Afj-8R-cqS"/>
-                                        <exclude reference="1Ri-7L-AQB"/>
-                                        <exclude reference="54P-T9-QN6"/>
-                                        <exclude reference="IBD-ER-tXP"/>
-                                        <exclude reference="Kdz-bE-tk6"/>
-                                        <exclude reference="Ykf-9w-D3z"/>
-                                        <exclude reference="fUh-h6-eQo"/>
-                                        <exclude reference="gZZ-i3-RE1"/>
-                                        <exclude reference="lrp-dK-B3N"/>
                                         <exclude reference="0dO-Gb-nO2"/>
                                         <exclude reference="4al-Vt-qml"/>
                                         <exclude reference="Hck-Vu-86J"/>
@@ -2874,11 +2866,6 @@ Atlanta, GA 30332</string>
                                         <exclude reference="Rer-VC-Rb7"/>
                                         <exclude reference="pTC-TZ-tis"/>
                                         <exclude reference="wYt-jQ-dMP"/>
-                                        <exclude reference="LTP-3Y-pl9"/>
-                                        <exclude reference="pVK-Ks-ddy"/>
-                                        <exclude reference="sHl-qM-lep"/>
-                                        <exclude reference="MnK-Iq-b4l"/>
-                                        <exclude reference="dFa-8a-PIk"/>
                                         <exclude reference="htd-h9-1EV"/>
                                         <exclude reference="xi8-Nf-I06"/>
                                         <exclude reference="PEQ-m6-WBQ"/>
@@ -2886,12 +2873,25 @@ Atlanta, GA 30332</string>
                                         <exclude reference="die-pS-biI"/>
                                         <exclude reference="hQs-Fv-v3H"/>
                                         <exclude reference="uKE-8L-FIH"/>
+                                        <exclude reference="LTP-3Y-pl9"/>
+                                        <exclude reference="pVK-Ks-ddy"/>
+                                        <exclude reference="sHl-qM-lep"/>
+                                        <exclude reference="MnK-Iq-b4l"/>
+                                        <exclude reference="dFa-8a-PIk"/>
                                         <exclude reference="EAk-ot-1Gk"/>
                                         <exclude reference="KTO-kL-Ezw"/>
                                         <exclude reference="OhQ-3w-Ign"/>
                                         <exclude reference="Txe-GW-Vvt"/>
                                         <exclude reference="3lc-Et-afs"/>
                                         <exclude reference="QkK-LO-E0c"/>
+                                        <exclude reference="1Ri-7L-AQB"/>
+                                        <exclude reference="54P-T9-QN6"/>
+                                        <exclude reference="IBD-ER-tXP"/>
+                                        <exclude reference="Kdz-bE-tk6"/>
+                                        <exclude reference="Ykf-9w-D3z"/>
+                                        <exclude reference="fUh-h6-eQo"/>
+                                        <exclude reference="gZZ-i3-RE1"/>
+                                        <exclude reference="lrp-dK-B3N"/>
                                         <exclude reference="0iS-t6-qDN"/>
                                         <exclude reference="Sem-ve-lsa"/>
                                         <exclude reference="b5I-jY-5Ey"/>
@@ -2915,14 +2915,6 @@ Atlanta, GA 30332</string>
                                     <mask key="constraints">
                                         <exclude reference="ACv-0o-RFZ"/>
                                         <exclude reference="Afj-8R-cqS"/>
-                                        <exclude reference="1Ri-7L-AQB"/>
-                                        <exclude reference="54P-T9-QN6"/>
-                                        <exclude reference="IBD-ER-tXP"/>
-                                        <exclude reference="Kdz-bE-tk6"/>
-                                        <include reference="Ykf-9w-D3z"/>
-                                        <include reference="fUh-h6-eQo"/>
-                                        <exclude reference="gZZ-i3-RE1"/>
-                                        <include reference="lrp-dK-B3N"/>
                                         <include reference="0dO-Gb-nO2"/>
                                         <exclude reference="4al-Vt-qml"/>
                                         <exclude reference="Hck-Vu-86J"/>
@@ -2937,11 +2929,6 @@ Atlanta, GA 30332</string>
                                         <exclude reference="Rer-VC-Rb7"/>
                                         <exclude reference="pTC-TZ-tis"/>
                                         <include reference="wYt-jQ-dMP"/>
-                                        <include reference="LTP-3Y-pl9"/>
-                                        <include reference="pVK-Ks-ddy"/>
-                                        <include reference="sHl-qM-lep"/>
-                                        <include reference="MnK-Iq-b4l"/>
-                                        <include reference="dFa-8a-PIk"/>
                                         <include reference="htd-h9-1EV"/>
                                         <include reference="xi8-Nf-I06"/>
                                         <exclude reference="PEQ-m6-WBQ"/>
@@ -2949,12 +2936,25 @@ Atlanta, GA 30332</string>
                                         <include reference="die-pS-biI"/>
                                         <include reference="hQs-Fv-v3H"/>
                                         <include reference="uKE-8L-FIH"/>
+                                        <include reference="LTP-3Y-pl9"/>
+                                        <include reference="pVK-Ks-ddy"/>
+                                        <include reference="sHl-qM-lep"/>
+                                        <include reference="MnK-Iq-b4l"/>
+                                        <include reference="dFa-8a-PIk"/>
                                         <include reference="EAk-ot-1Gk"/>
                                         <include reference="KTO-kL-Ezw"/>
                                         <include reference="OhQ-3w-Ign"/>
                                         <include reference="Txe-GW-Vvt"/>
                                         <exclude reference="3lc-Et-afs"/>
                                         <include reference="QkK-LO-E0c"/>
+                                        <exclude reference="1Ri-7L-AQB"/>
+                                        <exclude reference="54P-T9-QN6"/>
+                                        <exclude reference="IBD-ER-tXP"/>
+                                        <exclude reference="Kdz-bE-tk6"/>
+                                        <include reference="Ykf-9w-D3z"/>
+                                        <include reference="fUh-h6-eQo"/>
+                                        <exclude reference="gZZ-i3-RE1"/>
+                                        <include reference="lrp-dK-B3N"/>
                                         <include reference="0iS-t6-qDN"/>
                                         <include reference="Sem-ve-lsa"/>
                                         <include reference="b5I-jY-5Ey"/>
@@ -2979,11 +2979,11 @@ Atlanta, GA 30332</string>
                                 <exclude reference="IEI-d6-mNJ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="jNq-pw-UUj"/>
                                 <exclude reference="Piu-gW-6yy"/>
                                 <exclude reference="cCq-X2-Ffg"/>
                                 <exclude reference="pxw-h2-2Ej"/>
                                 <exclude reference="zto-il-9CI"/>
-                                <exclude reference="jNq-pw-UUj"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -2991,11 +2991,11 @@ Atlanta, GA 30332</string>
                                 <include reference="IEI-d6-mNJ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="jNq-pw-UUj"/>
                                 <include reference="Piu-gW-6yy"/>
                                 <include reference="cCq-X2-Ffg"/>
                                 <exclude reference="pxw-h2-2Ej"/>
                                 <include reference="zto-il-9CI"/>
-                                <exclude reference="jNq-pw-UUj"/>
                             </mask>
                         </variation>
                     </view>
@@ -3014,7 +3014,7 @@ Atlanta, GA 30332</string>
         <!--Initial Settings-->
         <scene sceneID="x2v-hE-ZES">
             <objects>
-                <viewController storyboardIdentifier="InitialSettingsView" title="Initial Settings" id="6Ro-Qa-1iI" customClass="InitialSettingsViewController" customModule="Pitch_Events" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialSettingsView" title="Initial Settings" id="6Ro-Qa-1iI" customClass="InitialSettingsViewController" customModule="Pitch_Alerts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ru5-V0-UTT"/>
                         <viewControllerLayoutGuide type="bottom" id="aD1-e3-ole"/>
@@ -3244,11 +3244,10 @@ Atlanta, GA 30332</string>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="cT0-Ug-XXA"/>
-                                        <exclude reference="GuU-3e-aue"/>
-                                        <exclude reference="J0O-zA-RT9"/>
-                                        <exclude reference="bCf-95-Tbq"/>
-                                        <exclude reference="sJL-6Y-paf"/>
-                                        <exclude reference="uXg-c6-59P"/>
+                                        <exclude reference="HfS-53-Ztn"/>
+                                        <exclude reference="O7i-jb-9tV"/>
+                                        <exclude reference="Ymn-oI-avp"/>
+                                        <exclude reference="djd-Vp-7zC"/>
                                         <exclude reference="0aT-Mo-px0"/>
                                         <exclude reference="404-wv-MDP"/>
                                         <exclude reference="HdT-aJ-9vS"/>
@@ -3261,10 +3260,6 @@ Atlanta, GA 30332</string>
                                         <exclude reference="CA7-EL-DSi"/>
                                         <exclude reference="EY0-Hy-2ph"/>
                                         <exclude reference="jCK-xq-3Dm"/>
-                                        <exclude reference="HfS-53-Ztn"/>
-                                        <exclude reference="O7i-jb-9tV"/>
-                                        <exclude reference="Ymn-oI-avp"/>
-                                        <exclude reference="djd-Vp-7zC"/>
                                         <exclude reference="gsr-b0-yxp"/>
                                         <exclude reference="jzj-xi-URb"/>
                                         <exclude reference="zGD-lF-SwD"/>
@@ -3278,16 +3273,6 @@ Atlanta, GA 30332</string>
                                         <exclude reference="zSz-6z-vQ5"/>
                                         <exclude reference="Bso-Tf-16f"/>
                                         <exclude reference="cJg-Qz-KVT"/>
-                                        <exclude reference="9BH-RI-K8b"/>
-                                        <exclude reference="9mu-iG-hlb"/>
-                                        <exclude reference="9xP-XO-MH2"/>
-                                        <exclude reference="Bqn-xN-OYN"/>
-                                        <exclude reference="J0r-SF-YUk"/>
-                                        <exclude reference="fYj-N6-C0m"/>
-                                        <exclude reference="hNH-kN-MWW"/>
-                                        <exclude reference="wcw-Aa-bnF"/>
-                                        <exclude reference="xry-qX-65d"/>
-                                        <exclude reference="yAB-9I-sgb"/>
                                         <exclude reference="Ixl-Yl-afL"/>
                                         <exclude reference="TeI-86-wqG"/>
                                         <exclude reference="XwH-cJ-W5s"/>
@@ -3298,6 +3283,21 @@ Atlanta, GA 30332</string>
                                         <exclude reference="WU8-MR-ryc"/>
                                         <exclude reference="n1n-XQ-g37"/>
                                         <exclude reference="qvM-zN-fVA"/>
+                                        <exclude reference="GuU-3e-aue"/>
+                                        <exclude reference="J0O-zA-RT9"/>
+                                        <exclude reference="bCf-95-Tbq"/>
+                                        <exclude reference="sJL-6Y-paf"/>
+                                        <exclude reference="uXg-c6-59P"/>
+                                        <exclude reference="9BH-RI-K8b"/>
+                                        <exclude reference="9mu-iG-hlb"/>
+                                        <exclude reference="9xP-XO-MH2"/>
+                                        <exclude reference="Bqn-xN-OYN"/>
+                                        <exclude reference="J0r-SF-YUk"/>
+                                        <exclude reference="fYj-N6-C0m"/>
+                                        <exclude reference="hNH-kN-MWW"/>
+                                        <exclude reference="wcw-Aa-bnF"/>
+                                        <exclude reference="xry-qX-65d"/>
+                                        <exclude reference="yAB-9I-sgb"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -3318,11 +3318,10 @@ Atlanta, GA 30332</string>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="cT0-Ug-XXA"/>
-                                        <exclude reference="GuU-3e-aue"/>
-                                        <exclude reference="J0O-zA-RT9"/>
-                                        <include reference="bCf-95-Tbq"/>
-                                        <include reference="sJL-6Y-paf"/>
-                                        <include reference="uXg-c6-59P"/>
+                                        <exclude reference="HfS-53-Ztn"/>
+                                        <include reference="O7i-jb-9tV"/>
+                                        <include reference="Ymn-oI-avp"/>
+                                        <exclude reference="djd-Vp-7zC"/>
                                         <exclude reference="0aT-Mo-px0"/>
                                         <exclude reference="404-wv-MDP"/>
                                         <exclude reference="HdT-aJ-9vS"/>
@@ -3335,10 +3334,6 @@ Atlanta, GA 30332</string>
                                         <include reference="CA7-EL-DSi"/>
                                         <include reference="EY0-Hy-2ph"/>
                                         <include reference="jCK-xq-3Dm"/>
-                                        <exclude reference="HfS-53-Ztn"/>
-                                        <include reference="O7i-jb-9tV"/>
-                                        <include reference="Ymn-oI-avp"/>
-                                        <exclude reference="djd-Vp-7zC"/>
                                         <include reference="gsr-b0-yxp"/>
                                         <include reference="jzj-xi-URb"/>
                                         <include reference="zGD-lF-SwD"/>
@@ -3352,16 +3347,6 @@ Atlanta, GA 30332</string>
                                         <include reference="zSz-6z-vQ5"/>
                                         <include reference="Bso-Tf-16f"/>
                                         <include reference="cJg-Qz-KVT"/>
-                                        <exclude reference="9BH-RI-K8b"/>
-                                        <include reference="9mu-iG-hlb"/>
-                                        <exclude reference="9xP-XO-MH2"/>
-                                        <include reference="Bqn-xN-OYN"/>
-                                        <exclude reference="J0r-SF-YUk"/>
-                                        <include reference="fYj-N6-C0m"/>
-                                        <include reference="hNH-kN-MWW"/>
-                                        <exclude reference="wcw-Aa-bnF"/>
-                                        <include reference="xry-qX-65d"/>
-                                        <exclude reference="yAB-9I-sgb"/>
                                         <include reference="Ixl-Yl-afL"/>
                                         <exclude reference="TeI-86-wqG"/>
                                         <include reference="XwH-cJ-W5s"/>
@@ -3372,6 +3357,21 @@ Atlanta, GA 30332</string>
                                         <include reference="WU8-MR-ryc"/>
                                         <exclude reference="n1n-XQ-g37"/>
                                         <include reference="qvM-zN-fVA"/>
+                                        <exclude reference="GuU-3e-aue"/>
+                                        <exclude reference="J0O-zA-RT9"/>
+                                        <include reference="bCf-95-Tbq"/>
+                                        <include reference="sJL-6Y-paf"/>
+                                        <include reference="uXg-c6-59P"/>
+                                        <exclude reference="9BH-RI-K8b"/>
+                                        <include reference="9mu-iG-hlb"/>
+                                        <exclude reference="9xP-XO-MH2"/>
+                                        <include reference="Bqn-xN-OYN"/>
+                                        <exclude reference="J0r-SF-YUk"/>
+                                        <include reference="fYj-N6-C0m"/>
+                                        <include reference="hNH-kN-MWW"/>
+                                        <exclude reference="wcw-Aa-bnF"/>
+                                        <include reference="xry-qX-65d"/>
+                                        <exclude reference="yAB-9I-sgb"/>
                                     </mask>
                                 </variation>
                             </view>

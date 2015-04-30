@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="CompanyProfile" representedClassName="Pitch_Events.CompanyProfile" syncable="YES">
+    <entity name="CompanyProfile" representedClassName="Pitch_Alerts.CompanyProfile" syncable="YES">
         <attribute name="capital_goal" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +17,7 @@
         <attribute name="sort_event_start" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sort_registration_deadline" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
-    <entity name="EventModel" representedClassName="Pitch_Events.EventModel" syncable="YES">
+    <entity name="EventModel" representedClassName="Pitch_Alerts.EventModel" syncable="YES">
         <attribute name="address_1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address_2" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
